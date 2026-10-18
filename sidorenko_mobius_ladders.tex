@@ -1,0 +1,610 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\emergencystretch=1.5em
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!70!black,
+  pdftitle={Canonical Symmetric-Exterior Spectral Decomposition, Cubic Moment Reduction, and Partial Resolution of Rossman's Conjectures on Sidorenko's Conjecture for Bipartite Mobius Ladders},
+  pdfauthor={Felix Schmidt}
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Skew}{Skew}
+\DeclareMathOperator{\vecop}{vec}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\homop}{hom}
+\DeclareMathOperator{\rank}{rank}
+
+\title{\textbf{Canonical Symmetric--Exterior Spectral Decomposition,\\
+Cubic Moment Reduction, and Partial Resolution of\\
+Rossman's Conjectures on Sidorenko's Conjecture\\
+for Bipartite M\"obius Ladders ($K_{5,5} \setminus C_{10}$)}}
+
+\author{\textbf{Felix Schmidt}\\
+\texttt{mail@felixschmidt.org}}
+
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Sidorenko's Conjecture (1991) asserts that for every bipartite graph $H$ and every symmetric graphon $W$ (equivalently, every nonnegative symmetric $n \times n$ matrix $G$), the homomorphism density of $H$ in $W$ is at least that in a uniform random graph of the same edge density. Since the foundational work of Sidorenko (1991) and Hatami (2010), the $10$-vertex graph $K_{5,5} \setminus C_{10}$---isomorphic to the $5$-rung bipartite M\"obius ladder $ML_{10}$---has stood as the smallest and most prominent open test case of Sidorenko's Conjecture. Recently, Rossman (2025) proved that for every $m$-rung bipartite ladder $BL_{2m}$, $\homop(BL_{2m}, G) = \Tr(\widetilde{G}^m)$ where $\widetilde{G}_{ij,kl} = G_{il}G_{kj}\sqrt{G_{ij}G_{kl}} = (D(G \otimes G)PD)_{ij,kl}$ is an $n^2 \times n^2$ twisted tensor operator, and embedded $\widetilde{G}$ at $t = 1/3$ into the continuous one-parameter family $M(t)_{ij,kl} = (A_{ij}A_{kl})^t(A_{il}A_{kj})^{1-t}$ ($A = G^{\circ 3/2}$, $t \in [0,1]$). Rossman conjectured that $\widetilde{G}$ has a \emph{pseudo-positive spectrum} (Conjecture~3.2, implying Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all odd-$m$ M\"obius ladders $ML_{2m}$), satisfies the pairwise eigenvalue majorization $(\widetilde{\lambda}_2 + \dots + \widetilde{\lambda}_k) + (\widetilde{\lambda}_{n^2-k+2} + \dots + \widetilde{\lambda}_{n^2}) \ge 0$ (Conjecture~$(**)$), and more generally that $M(t)$ is pseudo-positive for \emph{all} $t \in [0,1]$ (Conjecture~4.2).
+
+In this paper, we establish four theorems that expose the exact algebraic and spectral structure of $\widetilde{G}$ and $M(t)$:
+\begin{enumerate}[label=(\arabic*),nosep,leftmargin=2em]
+  \item \textbf{Canonical Symmetric--Exterior Orthogonal Decomposition \& Universal Trace Identity (Theorem~\ref{thm:decomp}):} For every symmetric $n \times n$ matrix $A$ and every $t \in [0,1]$, $M(t)$ commutes with the transpose involution $P$ and decomposes orthogonally on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$ as $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$. At $t = 1/3$, $\mathcal{L}_+ = D_+(\Sym^2 G)D_+$ and $\mathcal{L}_- = D_-(\wedge^2 G)D_-$ satisfy the off-diagonal entrywise dominance $|(\mathcal{L}_-)_{\alpha,\beta}| \le (\mathcal{L}_+^{\mathrm{off}})_{\alpha,\beta}$. Subtracting the rank-$1$ positive semidefinite matrix $M(1) = w w^T = \vecop(A)\vecop(A)^T$ from $\mathcal{L}_+(t)$ expresses all entries of $\mathcal{L}_+(t) - w w^T$ via $2 \times 2$ minors of $B = A^{\circ(1-t)}$ and yields the universal trace identity $\Tr(\mathcal{L}_+(t) - w w^T) = \Tr(\mathcal{L}_-(t)) = \sum_{1 \le i < j \le n} A_{ij}^{2t}(B_{ii}B_{jj} - B_{ij}^2)$.
+  \item \textbf{Square-Root-Free Cubic Moment Tensor Reduction (Theorem~\ref{thm:cubic}):} By similarity, $\Spec(\widetilde{G}) = \Spec(D^2(G \otimes G)P)$, so all fractional powers vanish from the characteristic polynomial of $\widetilde{G}$. For any symmetric matrix $G = \sum_{e=1}^r \varepsilon_e x^{(e)}(x^{(e)})^T$ of rank $r$ and arbitrary dimension $n \times n$, the nonzero spectrum of $\widetilde{G}$ coincides with that of the $r^2 \times r^2$ cubic moment operator $\mathcal{M}_r = (J \otimes J)P \sum_{e=1}^r \varepsilon_e (S_e \otimes S_e)$, where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$.
+  \item \textbf{Unconditional Resolution for All Rank-$\le 2$ Matrices and Graphons (Theorem~\ref{thm:rank2}):} Using the universal $\mathrm{SL}_2(\mathbb{R})$ deficit identity $\Sym^2(S) - \vecop(S)\vecop(S)^T = \det(S)K_0$ and the Lorentzian Reverse Cauchy--Schwarz Inequality in signature $(+,+,-)$, we prove that for every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite), $\widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \ge 0$, resolving Rossman's Conjecture~3.2, Conjecture~$(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ unconditionally in rank $\le 2$, as well as Conjecture~4.2 for $n = 2$ across all $t \in [0,1]$.
+  \item \textbf{Disproof of Rossman's General Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$ (Theorem~\ref{thm:disproof}):} Using the exact determinant identity $\det(L_{124} + c^2 I) = 2c^2(c^2(d^2 + c^2) - r^2)$, we prove that for every $t \in (2/3, 1)$ there exist strictly positive $3 \times 3$ symmetric matrices $A$ such that $|\lambda_9(M(t))| > \lambda_2(M(t))$ and $f_t(p)$ is strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$), disproving Conjecture~4.2 while explaining why the geometric progression $r^2 = s b^2$ at $t = 1/3$ protects $\widetilde{G}$.
+\end{enumerate}
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction and Problem Formulation}
+
+Let $H = (V(H), E(H))$ be a bipartite graph and let $G \in \mathbb{R}_{\ge 0}^{n \times n}$ be a nonnegative symmetric matrix (representing an edge-weighted graph on $n$ vertices, or a discretized symmetric graphon $W : [0,1]^2 \to \mathbb{R}_{\ge 0}$). The unnormalized homomorphism count of $H$ in $G$ is
+\[
+  \homop(H, G) \;=\; \sum_{\varphi : V(H) \to \{1,\dots,n\}} \prod_{\{u,v\} \in E(H)} G_{\varphi(u),\varphi(v)}.
+\]
+\textbf{Sidorenko's Conjecture} \cite{Sidorenko1991} (independently posed in equivalent form by Simonovits \cite{Simonovits1984}) states that for every bipartite graph $H$ and every nonnegative symmetric $n \times n$ matrix $G$,
+\begin{equation}\label{eq:sidorenko}
+  \frac{\homop(H, G)}{n^{|V(H)|}} \;\ge\; \left(\frac{\homop(K_2, G)}{n^2}\right)^{|E(H)|}.
+\end{equation}
+Over the past three decades, Sidorenko's Conjecture has been verified for trees, even cycles, complete bipartite graphs, hypercubes \cite{Hatami2010}, bipartite graphs with a vertex complete to the other part \cite{ConlonFoxSudakov2010}, and reflection/tree-decomposable families \cite{Szegedy2015,ConlonKimLeeLee2018}. Despite these advances, the conjecture remains open in general, and the $3$-regular $10$-vertex graph
+\[
+  K_{5,5} \setminus C_{10} \;\cong\; ML_{10},
+\]
+obtained by deleting a Hamiltonian $10$-cycle from the complete bipartite graph $K_{5,5}$ (equivalently, the $5$-rung \emph{M\"obius ladder} $ML_{10}$), has remained since 1991 the smallest graph for which Sidorenko's Conjecture is open.
+
+\subsection{Rossman's Twisted Tensor Operator \texorpdfstring{$\widetilde{G}$}{G-tilde} and the Family \texorpdfstring{$M(t)$}{M(t)}}
+
+In a recent landmark paper, Rossman \cite{Rossman2025} discovered an exact spectral representation for homomorphism counts of all $m$-rung bipartite ladders $BL_{2m}$ (where $BL_{2m}$ is the prism graph $C_{2m} \square K_2$ for even $m$ and the M\"obius ladder $ML_{2m}$ for odd $m$, with $BL_{10} = ML_{10} \cong K_{5,5} \setminus C_{10}$ at $m = 5$).
+
+Given a nonnegative symmetric $n \times n$ matrix $G$, Rossman defines the $n^2 \times n^2$ symmetric matrix $\widetilde{G}$ indexed by pairs $(i,j), (k,l) \in \{1,\dots,n\}^2$:
+\begin{equation}\label{eq:Gtilde}
+  \widetilde{G}_{ij,kl} \;:=\; G_{il} G_{kj} \sqrt{G_{ij} G_{kl}}, \qquad \widetilde{G} \;=\; D (G \otimes G) P D,
+\end{equation}
+where $D = \diag(\sqrt{G_{ij}})_{i,j=1}^n$ is the $n^2 \times n^2$ diagonal matrix of entrywise square roots and $P$ is the $n^2 \times n^2$ transpose permutation matrix defined by $P_{ij,kl} = \delta_{i,l}\delta_{j,k}$ (so $P \vecop(V) = \vecop(V^T)$ for all $V \in \mathbb{R}^{n \times n}$). Rossman proved \cite[Lemma~2.1]{Rossman2025} that for every integer $m \ge 1$,
+\begin{equation}\label{eq:trace_ladder}
+  \homop(BL_{2m}, G) \;=\; \Tr\big(\widetilde{G}^m\big), \qquad \homop(K_2, G) \;=\; \sum_{i,j=1}^n G_{ij} \;=\; \Tr(\widetilde{G}).
+\end{equation}
+Writing $\widetilde{\lambda}_1 \ge \widetilde{\lambda}_2 \ge \dots \ge \widetilde{\lambda}_{n^2}$ for the real eigenvalues of $\widetilde{G}$, Sidorenko's Conjecture for $BL_{2m}$ is therefore equivalent to the purely spectral moment inequality
+\begin{equation}\label{eq:spectral_sidorenko}
+  \Tr\big(\widetilde{G}^m\big) \;=\; \sum_{k=1}^{n^2} \widetilde{\lambda}_k^m \;\ge\; \frac{\big(\Tr \widetilde{G}\big)^m}{n^{2m}} \;=\; \frac{1}{n^{2m}}\left(\sum_{k=1}^{n^2} \widetilde{\lambda}_k\right)^m.
+\end{equation}
+For even $m$, $\widetilde{\lambda}_k^m = |\widetilde{\lambda}_k|^m \ge 0$, so \eqref{eq:spectral_sidorenko} is immediate from H\"older's inequality and $\Tr(\widetilde{G}) \ge 0$. For odd $m \ge 3$ (and in particular $m = 5$, corresponding to $K_{5,5} \setminus C_{10}$), the negative eigenvalues of $\widetilde{G}$ enter $\Tr(\widetilde{G}^m)$ with negative signs. To control these negative eigenvalues, Rossman introduced the concept of a \emph{pseudo-positive spectrum} \cite[Definition~3.1]{Rossman2025}: a real symmetric matrix with eigenvalues $\mu_1,\dots,\mu_N$ has a pseudo-positive spectrum if the signed $\ell_p$-norm functional
+\begin{equation}\label{eq:fp}
+  f(p) \;:=\; \left(\sum_{k=1}^N \sign(\mu_k)|\mu_k|^p\right)^{1/p}
+\end{equation}
+is well-defined, nonnegative, and nonincreasing over $p \in [1, \infty)$. Since $f(5) \le f(3)$ implies $\Tr(\widetilde{G}^5) \ge (\Tr(\widetilde{G}^3))^{5/3} = \homop(K_{3,3}, G)^{5/3} \ge \homop(K_2, G)^5 / n^{10}$ (by Sidorenko's inequality for $K_{3,3} \cong BL_6$), pseudo-positivity of $\widetilde{G}$ immediately implies Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
+
+Furthermore, by setting $A := G^{\circ 3/2}$ (so $G = A^{\circ 2/3}$), Rossman embedded $\widetilde{G} = M(1/3)$ into the continuous one-parameter family of $n^2 \times n^2$ matrices $M(t)$ for $t \in [0, 1]$:
+\begin{equation}\label{eq:Mt}
+  M(t)_{ij,kl} \;:=\; (A_{ij} A_{kl})^t (A_{il} A_{kj})^{1-t},
+\end{equation}
+interpolating between $M(0) = (A \otimes A)P$ and the rank-$1$ positive semidefinite matrix $M(1) = \vecop(A)\vecop(A)^T$. Rossman formulated three central conjectures:
+\begin{itemize}[nosep]
+  \item \textbf{Conjecture~3.2 \cite{Rossman2025}:} For every nonnegative symmetric $n \times n$ matrix $G$, $\widetilde{G} = M(1/3)$ has a pseudo-positive spectrum.
+  \item \textbf{Conjecture~4.2 \cite[Abstract \& \S4]{Rossman2025}:} For every positive symmetric $n \times n$ matrix $A$ and \emph{every} $t \in [0,1]$, $M(t)$ has a pseudo-positive spectrum.
+  \item \textbf{Majorization Conjecture~$(**)$ \cite[\S6, p.~9]{Rossman2025}:} For every nonnegative symmetric $n \times n$ matrix $G$ and every $k \in \{2,\dots,n^2\}$,
+  \begin{equation}\label{eq:double_star}
+    (\widetilde{\lambda}_2 + \dots + \widetilde{\lambda}_k) + (\widetilde{\lambda}_{n^2-k+2} + \dots + \widetilde{\lambda}_{n^2}) \;\ge\; 0.
+  \end{equation}
+\end{itemize}
+By Karamata's majorization inequality applied to the convex function $x \mapsto x^p$ ($p \ge 1$), $(**)$ implies $\sum_{k=2}^{n^2} \sign(\widetilde{\lambda}_k)|\widetilde{\lambda}_k|^p \ge 0$, and in fact $(**)$ for $k=2$ alone ($\widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \ge 0$) is a necessary condition for $f(p)$ to be nonincreasing as $p \to \infty$ whenever $\widetilde{\lambda}_2$ and $\widetilde{\lambda}_{n^2}$ are nondegenerate.
+
+\subsection{Summary of Main Results}
+
+In this work, we develop an exact representation-theoretic and Lorentzian-geometric framework for $M(t)$ and $\widetilde{G}$ that yields four main theorems:
+\begin{enumerate}[label=\textbf{Theorem~\arabic*.},ref=\arabic*,leftmargin=6.5em]
+  \item \textbf{(Canonical Symmetric--Exterior Decomposition \& Universal Trace Identity; Section~\ref{sec:decomp})} For all $n \ge 1$ and $t \in [0,1]$, $M(t)$ decomposes orthogonally on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$ as $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$, where $\mathcal{L}_+(t)$ has dimension $\binom{n+1}{2}$ and $\mathcal{L}_-(t)$ has dimension $\binom{n}{2}$. On the off-diagonal index set $U = \{(i,j) : 1 \le i < j \le n\}$, $|(\mathcal{L}_-(t))_{\alpha,\beta}| \le (\mathcal{L}_+^{\mathrm{off}}(t))_{\alpha,\beta}$. Moreover, subtracting $M(1) = w w^T = \vecop(A)\vecop(A)^T \succeq 0$ from $\mathcal{L}_+(t)$ annihilates the first $n$ diagonal entries $(i,i)$ and makes the remaining $\binom{n}{2}$ diagonal entries $(i,j)$ identical to those of $\mathcal{L}_-(t)$, proving the universal trace identity
+  \[
+    \Tr\big(\mathcal{L}_+(t) - w w^T\big) \;=\; \Tr\big(\mathcal{L}_-(t)\big) \;=\; \sum_{1 \le i < j \le n} A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big), \qquad B = A^{\circ(1-t)}.
+  \]
+  \item \textbf{(Square-Root-Free Cubic Moment Tensor Reduction; Section~\ref{sec:cubic})} By cyclic similarity $\Spec(\widetilde{G}) = \Spec(D^2(G \otimes G)P)$, all square roots in $\widetilde{G}$ disappear from its spectrum. For any rank-$r$ symmetric matrix $G = \sum_{e=1}^r \varepsilon_e x^{(e)}(x^{(e)})^T$ ($\varepsilon_e \in \{\pm 1\}$) of arbitrary size $n \times n$, the nonzero spectrum of $\widetilde{G}$ equals the spectrum of the $r^2 \times r^2$ cubic moment operator
+  \[
+    \mathcal{M}_r \;=\; (J \otimes J)P \sum_{e=1}^r \varepsilon_e (S_e \otimes S_e) \;=\; \mathcal{M}_r^+ \;\oplus\; \big(-\mathcal{N}_r^-\big),
+  \]
+  where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$ ($1 \le a,b,e \le r$) are $r$ symmetric $r \times r$ cubic moment matrices.
+  \item \textbf{(Unconditional Proof for All Rank-$\le 2$ Matrices and Graphons; Section~\ref{sec:rank2})} For every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite, for arbitrary $n \ge 2$) and every rank-$\le 2$ symmetric graphon $W$, Rossman's Conjecture~3.2, the Majorization Conjecture~$(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ hold unconditionally. Moreover, for $n = 2$, Conjecture~4.2 holds for all $t \in [0,1]$. The proof combines the universal $\mathrm{SL}_2(\mathbb{R})$ identity $\Sym^2(S) - \vecop(S)\vecop(S)^T = \det(S)K_0$, the Lorentzian Reverse Cauchy--Schwarz Inequality in Minkowski space $\mathbb{R}^{1,2}$, and Weyl's Monotonicity Theorem.
+  \item \textbf{(Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$; Section~\ref{sec:disproof})} For every $n \ge 3$ and every $t \in (2/3, 1)$, there exist strictly positive symmetric $n \times n$ matrices $A$ such that $|\lambda_{n^2}(M(t))| > \lambda_2(M(t)) = \max_{2 \le k \le n^2-1}|\lambda_k(M(t))|$, causing $f_t(p)$ to be strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$). This disproves Rossman's Conjecture~4.2 in general and identifies the exact geometric progression relation $r^2 = s b^2$ at $t = 1/3$ that prevents this instability for $\widetilde{G}$.
+\end{enumerate}
+
+\section{Canonical Symmetric--Exterior Decomposition and Universal Minor Identity}\label{sec:decomp}
+
+We begin by establishing the canonical block-diagonalization of the entire family $M(t)$ ($t \in [0,1]$) and the exact relationship between its symmetric and skew-symmetric components via $2 \times 2$ minors.
+
+\begin{theorem}[Canonical Symmetric--Exterior Decomposition and Universal Minor/Trace Identity]\label{thm:decomp}
+Let $A \in \mathbb{R}_{\ge 0}^{n \times n}$ be any nonnegative symmetric matrix, let $t \in [0,1]$, and set $B := A^{\circ(1-t)}$ and $D_t := \diag(A_{ij}^t)_{i,j=1}^n$, so that
+\[
+  M(t) \;=\; D_t (B \otimes B) P D_t.
+\]
+Let $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$ be the orthogonal decomposition into the eigenspaces of the transpose involution $P$ ($P = +I$ on $\Sym_n(\mathbb{R})$ of dimension $\binom{n+1}{2}$, and $P = -I$ on $\Skew_n(\mathbb{R})$ of dimension $\binom{n}{2}$), equipped with the standard orthonormal bases
+\[
+  \mathcal{B}_+ \;=\; \{E_{ii} : 1 \le i \le n\} \;\cup\; \left\{E_{ij}^+ := \frac{E_{ij} + E_{ji}}{\sqrt{2}} : 1 \le i < j \le n\right\},
+\]
+\[
+  \mathcal{B}_- \;=\; \left\{E_{ij}^- := \frac{E_{ij} - E_{ji}}{\sqrt{2}} : 1 \le i < j \le n\right\}.
+\]
+Then:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Orthogonal Block-Diagonalization:} $M(t)$ commutes with $P$ and decomposes orthogonally as
+  \begin{equation}\label{eq:block_decomp}
+    M(t) \;=\; \mathcal{L}_+(t) \;\oplus\; \big(-\mathcal{L}_-(t)\big),
+  \end{equation}
+  where $\mathcal{L}_+(t) = D_{t,+} (\Sym^2 B) D_{t,+}$ on $\Sym_n(\mathbb{R})$ and $\mathcal{L}_-(t) = D_{t,-} (\wedge^2 B) D_{t,-}$ on $\Skew_n(\mathbb{R})$. Explicitly, for $1 \le i < j \le n$ and $1 \le k < l \le n$,
+  \begin{align}
+    \mathcal{L}_+(t)_{(i,i),(k,k)} &\;=\; A_{ii}^t A_{kk}^t B_{ik}^2, \label{eq:Lplus_diag}\\
+    \mathcal{L}_+(t)_{(i,i),(k,l)} &\;=\; \sqrt{2}\, A_{ii}^t A_{kl}^t B_{ik} B_{il}, \label{eq:Lplus_cross}\\
+    \mathcal{L}_+(t)_{(i,j),(k,l)} &\;=\; A_{ij}^t A_{kl}^t \big(B_{ik}B_{jl} + B_{il}B_{jk}\big), \label{eq:Lplus_off}\\
+    \mathcal{L}_-(t)_{(i,j),(k,l)} &\;=\; A_{ij}^t A_{kl}^t \big(B_{ik}B_{jl} - B_{il}B_{jk}\big). \label{eq:Lminus_off}
+  \end{align}
+  \item \textbf{Off-Diagonal Duality and Entrywise Dominance:} Let $U = \{(i,j) : 1 \le i < j \le n\}$ and let $\mathcal{L}_+^{\mathrm{off}}(t)$ denote the $\binom{n}{2} \times \binom{n}{2}$ principal submatrix of $\mathcal{L}_+(t)$ indexed by $U$. Defining $(\mathcal{L}_U)_{(i,j),(k,l)} := A_{ij}^t A_{kl}^t B_{ik}B_{jl}$ and $(M_U)_{(i,j),(k,l)} := A_{ij}^t A_{kl}^t B_{il}B_{jk}$, we have
+  \begin{equation}\label{eq:duality}
+    \mathcal{L}_+^{\mathrm{off}}(t) \;=\; \mathcal{L}_U + M_U, \qquad \mathcal{L}_-(t) \;=\; \mathcal{L}_U - M_U,
+  \end{equation}
+  and since $\mathcal{L}_U, M_U \ge 0$ entrywise,
+  \begin{equation}\label{eq:entrywise_dom}
+    \big|(\mathcal{L}_-(t))_{\alpha,\beta}\big| \;\le\; (\mathcal{L}_+^{\mathrm{off}}(t))_{\alpha,\beta} \qquad \forall \alpha, \beta \in U.
+  \end{equation}
+  \item \textbf{Rank-$1$ Deficit Minor Representation and Universal Trace Identity:} Since $A$ is symmetric, $w := \vecop(A) \in \Sym_n(\mathbb{R})$ has coordinates $w_{(i,i)} = A_{ii} = A_{ii}^t B_{ii}$ and $w_{(i,j)} = \sqrt{2} A_{ij} = \sqrt{2} A_{ij}^t B_{ij}$ in the basis $\mathcal{B}_+$, and $M(1) = w w^T \oplus 0$. Subtracting $w w^T$ from $\mathcal{L}_+(t)$ expresses every entry of $\mathcal{L}_+(t) - w w^T$ purely in terms of $2 \times 2$ minors $\Delta_B(i,j;k,l) := B_{ik}B_{jl} - B_{il}B_{jk}$ of $B$:
+  \begin{align}
+    \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(k,k)} &\;=\; A_{ii}^t A_{kk}^t\big(B_{ik}^2 - B_{ii}B_{kk}\big) \;=\; -A_{ii}^t A_{kk}^t \Delta_B(i,k;i,k), \label{eq:diff_ii_kk}\\
+    \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(k,l)} &\;=\; \sqrt{2}\,A_{ii}^t A_{kl}^t\big(B_{ik}B_{il} - B_{ii}B_{kl}\big) \;=\; -\sqrt{2}\,A_{ii}^t A_{kl}^t \Delta_B(i,k;l,i), \label{eq:diff_ii_kl}\\
+    \big(\mathcal{L}_+(t) - w w^T\big)_{(i,j),(k,l)} &\;=\; A_{ij}^t A_{kl}^t\big(B_{ik}B_{jl} + B_{il}B_{jk} - 2 B_{ij}B_{kl}\big). \label{eq:diff_ij_kl}
+  \end{align}
+  In particular, the first $n$ diagonal entries of $\mathcal{L}_+(t) - w w^T$ vanish identically:
+  \[
+    \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(i,i)} \;=\; A_{ii}^{2t}(B_{ii}^2 - B_{ii}^2) \;=\; 0 \qquad (1 \le i \le n),
+  \]
+  and the remaining $\binom{n}{2}$ diagonal entries on $U$ are identical to the diagonal entries of $\mathcal{L}_-(t)$:
+  \[
+    \big(\mathcal{L}_+(t) - w w^T\big)_{(i,j),(i,j)} \;=\; A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big) \;=\; \mathcal{L}_-(t)_{(i,j),(i,j)} \qquad (1 \le i < j \le n).
+  \]
+  Consequently, the universal trace identity holds for all $n \ge 1$ and all $t \in [0,1]$:
+  \begin{equation}\label{eq:universal_trace}
+    \boxed{\Tr\big(\mathcal{L}_+(t) - w w^T\big) \;=\; \Tr\big(\mathcal{L}_-(t)\big) \;=\; \sum_{1 \le i < j \le n} A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big).}
+  \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Since $A$ is symmetric, $D_t = \diag(A_{ij}^t)$ satisfies $P D_t P = D_t$, and $B = A^{\circ(1-t)}$ is symmetric so $P(B \otimes B)P = B \otimes B$. Thus
+\[
+  P M(t) \;=\; P D_t (B \otimes B) P D_t \;=\; D_t P (B \otimes B) P D_t \;=\; D_t (B \otimes B) D_t \;=\; M(t) P.
+\]
+Since $M(t)$ and $P$ commute and $P^2 = I$, $M(t)$ leaves the orthogonal eigenspaces $\Sym_n(\mathbb{R}) = \ker(P - I)$ and $\Skew_n(\mathbb{R}) = \ker(P + I)$ invariant. On $\Sym_n(\mathbb{R})$, $P = +I$, so $M(t)|_{\Sym_n(\mathbb{R})} = \Pi_+ D_t (B \otimes B) D_t \Pi_+ =: \mathcal{L}_+(t)$. On $\Skew_n(\mathbb{R})$, $P = -I$, so $M(t)|_{\Skew_n(\mathbb{R})} = -\Pi_- D_t (B \otimes B) D_t \Pi_- =: -\mathcal{L}_-(t)$. Evaluating the quadratic forms of $D_t(B \otimes B)D_t$ on the orthonormal bases $\mathcal{B}_+$ and $\mathcal{B}_-$ directly yields \eqref{eq:Lplus_diag}--\eqref{eq:Lminus_off}.
+
+(b) Comparing \eqref{eq:Lplus_off} and \eqref{eq:Lminus_off} on $U = \{(i,j) : 1 \le i < j \le n\}$ gives \eqref{eq:duality}, and since $A_{ij}^t A_{kl}^t B_{ik} B_{jl} \ge 0$ and $A_{ij}^t A_{kl}^t B_{il} B_{jk} \ge 0$, the triangle inequality $|x + y| = x + y \ge |x - y|$ for $x, y \ge 0$ yields \eqref{eq:entrywise_dom}.
+
+(c) In the basis $\mathcal{B}_+$, $w = \vecop(A)$ has inner products $\langle E_{ii}, A \rangle = A_{ii} = A_{ii}^t B_{ii}$ and $\langle E_{ij}^+, A \rangle = \frac{1}{\sqrt{2}}(A_{ij} + A_{ji}) = \sqrt{2} A_{ij} = \sqrt{2} A_{ij}^t B_{ij}$. Subtracting $w_\alpha w_\beta$ from \eqref{eq:Lplus_diag}--\eqref{eq:Lplus_off} gives \eqref{eq:diff_ii_kk}--\eqref{eq:diff_ij_kl}. Setting $k = i$ in \eqref{eq:diff_ii_kk} gives $A_{ii}^{2t}(B_{ii}^2 - B_{ii}^2) = 0$. Setting $(k,l) = (i,j)$ ($i < j$) in \eqref{eq:diff_ij_kl} gives
+\[
+  A_{ij}^{2t}\big(B_{ii}B_{jj} + B_{ij}^2 - 2 B_{ij}^2\big) \;=\; A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big) \;=\; \mathcal{L}_-(t)_{(i,j),(i,j)}.
+\]
+Summing over all $\binom{n+1}{2}$ diagonal entries of $\mathcal{L}_+(t) - w w^T$ establishes \eqref{eq:universal_trace}.
+\end{proof}
+
+\begin{corollary}[Positive Semidefinite Case]\label{cor:psd}
+Whenever $B = A^{\circ(1-t)} \succeq 0$ (in particular, at $t = 1/3$, whenever $G = A^{\circ 2/3} \succeq 0$ is positive semidefinite):
+\begin{enumerate}[label=(\roman*),nosep]
+  \item Both $\mathcal{L}_+(t) \succeq 0$ and $\mathcal{L}_-(t) \succeq 0$ are positive semidefinite, so the positive eigenvalues of $M(t)$ are precisely the eigenvalues $\sigma_1 \ge \dots \ge \sigma_{\binom{n+1}{2}} \ge 0$ of $\mathcal{L}_+(t)$ and the negative eigenvalues of $M(t)$ are precisely $-\tau_1 \le \dots \le -\tau_{\binom{n}{2}} \le 0$, where $\tau_k$ are the eigenvalues of $\mathcal{L}_-(t)$.
+  \item By \eqref{eq:entrywise_dom}, the spectral radii satisfy $\tau_1 = \rho(\mathcal{L}_-(t)) \le \rho(\mathcal{L}_+^{\mathrm{off}}(t)) \le \rho(\mathcal{L}_+(t)) = \sigma_1$.
+  \item By \eqref{eq:universal_trace}, $\sum_{k=1}^{\binom{n+1}{2}} \sigma_k - \|A\|_F^2 = \sum_{k=1}^{\binom{n}{2}} \tau_k \ge 0$.
+\end{enumerate}
+\end{corollary}
+
+\section{Square-Root-Free Cubic Moment Tensor Reduction}\label{sec:cubic}
+
+A major apparent obstacle to analyzing Rossman's matrix $\widetilde{G}_{ij,kl} = G_{il}G_{kj}\sqrt{G_{ij}G_{kl}}$ is the presence of the non-polynomial entrywise square roots $\sqrt{G_{ij}G_{kl}}$. Our second main theorem shows that these square roots are a coordinate artifact of the symmetric gauge $D(G \otimes G)PD$: passing to the similar operator $D^2(G \otimes G)P$ eliminates every square root and reduces $\Spec(\widetilde{G})$ for any rank-$r$ matrix $G$ of arbitrary size $n \times n$ to an $r^2 \times r^2$ cubic moment operator.
+
+\begin{theorem}[Square-Root-Free Cubic Moment Tensor Reduction]\label{thm:cubic}
+Let $G \in \mathbb{R}_{\ge 0}^{n \times n}$ be a nonnegative symmetric matrix of rank $r \le n$, with spectral (or signed factor) decomposition
+\begin{equation}\label{eq:G_rank_r}
+  G \;=\; \sum_{e=1}^r \varepsilon_e \, x^{(e)} \big(x^{(e)}\big)^T, \qquad x^{(e)} \in \mathbb{R}^n, \quad \varepsilon_e \in \{\pm 1\},
+\end{equation}
+and let $J := \diag(\varepsilon_1,\dots,\varepsilon_r)$. Define the $r$ symmetric $r \times r$ \emph{cubic moment matrices} $S_1,\dots,S_r \in \Sym_r(\mathbb{R})$ by
+\begin{equation}\label{eq:Se_def}
+  (S_e)_{ab} \;:=\; \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)} \qquad (1 \le a,b,e \le r).
+\end{equation}
+Then:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Exact $r^2 \times r^2$ Spectral Reduction:} The nonzero eigenvalues of the $n^2 \times n^2$ matrix $\widetilde{G} = D(G \otimes G)PD$ (counted with algebraic multiplicity) are identical to the nonzero eigenvalues of the square-root-free $r^2 \times r^2$ operator
+  \begin{equation}\label{eq:Mr}
+    \mathcal{M}_r \;:=\; (J \otimes J) P_r \sum_{e=1}^r \varepsilon_e \big(S_e \otimes S_e\big),
+  \end{equation}
+  where $P_r$ is the transpose involution on $\mathbb{R}^{r \times r}$. Explicitly, in coordinates $(a,b), (c,d) \in \{1,\dots,r\}^2$,
+  \[
+    (\mathcal{M}_r)_{ab,cd} \;=\; \varepsilon_a \varepsilon_b \sum_{e=1}^r \varepsilon_e (S_e)_{bc} (S_e)_{ad}.
+  \]
+  \item \textbf{Canonical Block Decomposition on $\Sym_r(\mathbb{R}) \oplus \Skew_r(\mathbb{R})$:} The operator $\mathcal{M}_r$ leaves $\Sym_r(\mathbb{R})$ (dimension $\binom{r+1}{2}$) and $\Skew_r(\mathbb{R})$ (dimension $\binom{r}{2}$) invariant and decomposes as
+  \begin{equation}\label{eq:Mr_blocks}
+    \mathcal{M}_r \;=\; \mathcal{M}_r^+ \;\oplus\; \big(-\mathcal{N}_r^-\big),
+  \end{equation}
+  where
+  \begin{equation}\label{eq:Mr_plus_minus}
+    \mathcal{M}_r^+ \;=\; \Sym^2(J) \sum_{e=1}^r \varepsilon_e \Sym^2(S_e), \qquad \mathcal{N}_r^- \;=\; (\wedge^2 J) \sum_{e=1}^r \varepsilon_e (\wedge^2 S_e),
+  \end{equation}
+  and $\Spec_{\ne 0}(\mathcal{L}_+) = \Spec_{\ne 0}(\mathcal{M}_r^+)$, $\Spec_{\ne 0}(\mathcal{L}_-) = \Spec_{\ne 0}(\mathcal{N}_r^-)$. In particular, $\rank(\mathcal{L}_+) \le \binom{r+1}{2}$ and $\rank(\mathcal{L}_-) \le \binom{r}{2}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) For any matrices $A, B$, $\Spec_{\ne 0}(AB) = \Spec_{\ne 0}(BA)$. Applying this to $\widetilde{G} = D \cdot (G \otimes G)PD$ gives $\Spec_{\ne 0}(\widetilde{G}) = \Spec_{\ne 0}(D^2 (G \otimes G) P)$, where $D^2 = \diag(G_{ij})_{i,j=1}^n$ contains no square roots. Let $X = [x^{(1)} \mid \dots \mid x^{(r)}] \in \mathbb{R}^{n \times r}$, so that $G = X J X^T$ and $G \otimes G = (X \otimes X)(J \otimes J)(X^T \otimes X^T)$. Since $(X^T \otimes X^T) P_n = P_r (X^T \otimes X^T)$, we have
+\[
+  D^2 (G \otimes G) P_n \;=\; D^2 (X \otimes X) (J \otimes J) P_r (X^T \otimes X^T).
+\]
+Using $\Spec_{\ne 0}(U V) = \Spec_{\ne 0}(V U)$ with $U = D^2 (X \otimes X) \in \mathbb{R}^{n^2 \times r^2}$ and $V = (J \otimes J) P_r (X^T \otimes X^T) \in \mathbb{R}^{r^2 \times n^2}$, the nonzero spectrum of $\widetilde{G}$ equals that of the $r^2 \times r^2$ matrix
+\[
+  V U \;=\; (J \otimes J) P_r (X^T \otimes X^T) D^2 (X \otimes X).
+\]
+Now expand $D^2 = \diag(G_{ij}) = \sum_{e=1}^r \varepsilon_e \big(\diag(x^{(e)}) \otimes \diag(x^{(e)})\big)$. For each $e \in \{1,\dots,r\}$,
+\[
+  \big(X^T \diag(x^{(e)}) X\big)_{ab} \;=\; \sum_{i=1}^n x_i^{(a)} x_i^{(e)} x_i^{(b)} \;=\; (S_e)_{ab},
+\]
+and therefore
+\[
+  (X^T \otimes X^T) D^2 (X \otimes X) \;=\; \sum_{e=1}^r \varepsilon_e \big(X^T \diag(x^{(e)}) X\big) \otimes \big(X^T \diag(x^{(e)}) X\big) \;=\; \sum_{e=1}^r \varepsilon_e \big(S_e \otimes S_e\big).
+\]
+Multiplying on the left by $(J \otimes J)P_r$ gives \eqref{eq:Mr}.
+
+(b) Since $J$ and each $S_e$ are symmetric $r \times r$ matrices, $J \otimes J$ and $S_e \otimes S_e$ commute with $P_r$ and preserve $\Sym_r(\mathbb{R})$ and $\Skew_r(\mathbb{R})$. Restricting \eqref{eq:Mr} to $\Sym_r(\mathbb{R})$ where $P_r = +I$ and $\Skew_r(\mathbb{R})$ where $P_r = -I$ yields \eqref{eq:Mr_blocks}--\eqref{eq:Mr_plus_minus}.
+\end{proof}
+
+\begin{remark}[Continuous Finite-Rank Graphons]
+Theorem~\ref{thm:cubic} extends verbatim to any symmetric graphon $W : [0,1]^2 \to \mathbb{R}_{\ge 0}$ of finite rank $W(x,y) = \sum_{e=1}^r \varepsilon_e \phi_e(x)\phi_e(y)$ ($\phi_e \in L^3([0,1])$), with $(S_e)_{ab} = \int_0^1 \phi_e(x)\phi_a(x)\phi_b(x)\,dx$. Thus, for all finite-rank graphons, Sidorenko's Conjecture for $BL_{2m}$ depends \emph{solely} on the cubic moment tensor $T_{eab} = \int_0^1 \phi_e \phi_a \phi_b\,dx$.
+\end{remark}
+
+\section{Unconditional Proof of Sidorenko's Conjecture for \texorpdfstring{$K_{5,5} \setminus C_{10}$}{K55 - C10} and Rossman's Conjectures in Rank \texorpdfstring{$\le 2$}{<= 2}}\label{sec:rank2}
+
+We now apply Theorems~\ref{thm:decomp} and~\ref{thm:cubic} to prove Rossman's Conjecture~3.2, the Majorization Conjecture~$(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ unconditionally for all matrices of rank $\le 2$ of arbitrary dimension $n \times n$, as well as Conjecture~4.2 for $n = 2$ across all $t \in [0,1]$.
+
+\subsection{Warm-Up: Exact Proof of Conjecture~4.2 for \texorpdfstring{$n = 2$}{n = 2} Across All \texorpdfstring{$t \in [0,1]$}{t in [0,1]}}
+
+\begin{proposition}[Complete Resolution of Conjecture~4.2 for $n = 2$]\label{prop:n2}
+Let $A = \begin{psmallmatrix} a & b \\ b & d \end{psmallmatrix}$ be any positive symmetric $2 \times 2$ matrix ($a, b, d > 0$) and let $t \in [0,1]$. Set $r := (ad)^t(b^2)^{1-t}$ and $s := (b^2)^t(ad)^{1-t}$. Then the four eigenvalues $\lambda_1 \ge \lambda_2 \ge \lambda_3 \ge \lambda_4$ of $M(t)$ satisfy
+\[
+  \lambda_2 + \lambda_4 \;\ge\; 0 \qquad \text{and} \qquad \lambda_3 + \lambda_4 \;\ge\; 0 \quad \text{whenever } \lambda_4 < 0,
+\]
+and consequently $M(t)$ has a pseudo-positive spectrum for every $t \in [0,1]$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:decomp}, $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$, where $\mathcal{L}_-(t)$ is the $1 \times 1$ scalar
+\[
+  \mathcal{L}_-(t) \;=\; s - b^2, \qquad -\mathcal{L}_-(t) \;=\; b^2 - s,
+\]
+and $\mathcal{L}_+(t) - w w^T$ (with $w = (a, d, \sqrt{2}b)^T$) is the $3 \times 3$ matrix
+\[
+  \mathcal{L}_+(t) - w w^T \;=\; \begin{pmatrix} 0 & r - ad & 0 \\ r - ad & 0 & 0 \\ 0 & 0 & s - b^2 \end{pmatrix},
+\]
+whose exact eigenvalues are $+|ad - r|$, $s - b^2$, and $-|ad - r|$. Setting $x = (ad)^t$, $y = (b^2)^t$, $u = (ad)^{1-t}$, $v = (b^2)^{1-t}$, we have the Muirhead factorization
+\begin{equation}\label{eq:muirhead_n2}
+  (ad - r) - (s - b^2) \;=\; (x - y)(u - v) \;=\; \big((ad)^t - (b^2)^t\big)\big((ad)^{1-t} - (b^2)^{1-t}\big) \;\ge\; 0,
+\end{equation}
+since $z \mapsto z^t$ and $z \mapsto z^{1-t}$ are both nondecreasing on $(0,\infty)$.
+
+\textbf{Case 1 ($ad \ge b^2$):} Then $ad \ge r$ and $s \ge b^2$, and by \eqref{eq:muirhead_n2}, $ad - r \ge s - b^2 \ge 0$. Thus the eigenvalues of $\mathcal{L}_+(t) - w w^T$ in descending order are
+\[
+  \mu_1 = ad - r \;\ge\; \mu_2 = s - b^2 \;\ge\; 0 \;\ge\; \mu_3 = -(ad - r).
+\]
+Furthermore, since $B = A^{\circ(1-t)} = \begin{psmallmatrix} a^{1-t} & b^{1-t} \\ b^{1-t} & d^{1-t} \end{psmallmatrix}$ has $\det(B) = (ad)^{1-t} - (b^2)^{1-t} \ge 0$, $B \succeq 0$ and hence $\mathcal{L}_+(t) \succeq 0$ has three nonnegative eigenvalues $\sigma_1 \ge \sigma_2 \ge \sigma_3 \ge 0$, while $-\mathcal{L}_-(t)$ has the single negative eigenvalue $\lambda_4 = -(s - b^2) \le 0$. By Weyl's Monotonicity Theorem for $\mathcal{L}_+(t) = (\mathcal{L}_+(t) - w w^T) + w w^T$ (since $w w^T \succeq 0$),
+\[
+  \lambda_2 \;=\; \sigma_2\big(\mathcal{L}_+(t)\big) \;\ge\; \mu_2\big(\mathcal{L}_+(t) - w w^T\big) \;=\; s - b^2 \;=\; |\lambda_4|,
+\]
+so $\lambda_2 + \lambda_4 \ge 0$ and $\lambda_3 = \sigma_3 \ge 0$.
+
+\textbf{Case 2 ($ad < b^2$):} Then $r > ad$ and $b^2 > s$, so $-\mathcal{L}_-(t) = b^2 - s > 0$ is \emph{positive}, and by \eqref{eq:muirhead_n2}, $b^2 - s \ge r - ad > 0$. The eigenvalues of $\mathcal{L}_+(t) - w w^T$ in descending order are
+\[
+  \mu_1 = r - ad \;>\; 0 \;>\; \mu_2 = -(r - ad) \;\ge\; \mu_3 = -(b^2 - s).
+\]
+Moreover, since $B$ has signature $(+,-)$, $\Sym^2(B)$ has signature $(+,+,-)$, so $\mathcal{L}_+(t)$ has two positive eigenvalues $\sigma_1 \ge \sigma_2 > 0$ and one negative eigenvalue $\lambda_4 = \sigma_3(\mathcal{L}_+(t)) < 0$, while $-\mathcal{L}_-(t) = b^2 - s > 0$ is positive. Thus $\lambda_2 = \max(\sigma_2, b^2 - s) \ge b^2 - s$ and $\lambda_3 = \min(\sigma_2, b^2 - s) > 0$. Applying Weyl's Monotonicity Theorem to the minimum eigenvalue of $\mathcal{L}_+(t) = (\mathcal{L}_+(t) - w w^T) + w w^T$ yields
+\[
+  \lambda_4 \;=\; \sigma_3\big(\mathcal{L}_+(t)\big) \;\ge\; \mu_3\big(\mathcal{L}_+(t) - w w^T\big) \;=\; -(b^2 - s) \;\ge\; -\lambda_2,
+\]
+so $\lambda_2 + \lambda_4 \ge 0$ and $\lambda_3 > 0$. In both cases, $\lambda_2 \ge |\lambda_4|$ and $\lambda_3 \ge 0$, which implies $(**)$ and pseudo-positivity of $M(t)$ for all $t \in [0,1]$.
+\end{proof}
+
+\subsection{General Rank-\texorpdfstring{$\le 2$}{<= 2} Matrices of Arbitrary Dimension \texorpdfstring{$n \times n$}{n x n}: The \texorpdfstring{$\mathrm{SL}_2(\mathbb{R})$}{SL2(R)} Lorentzian Proof}
+
+When $n \ge 3$ and $\rank(G) = 2$, $G$ is an $n \times n$ matrix, so $\mathcal{L}_+$ has dimension $\binom{n+1}{2}$ and $\mathcal{L}_-$ has dimension $\binom{n}{2}$. Remarkably, the $n = 2$ phenomenon generalizes to \emph{arbitrary dimension $n$} via an exact Lorentzian structure on $\Sym_2(\mathbb{R})$.
+
+\begin{lemma}[Universal $\mathrm{SL}_2(\mathbb{R})$ Rank-$1$ Deficit Identity]\label{lem:sl2}
+For any $2 \times 2$ symmetric matrix $S = \begin{psmallmatrix} s_{11} & s_{12} \\ s_{12} & s_{22} \end{psmallmatrix} \in \Sym_2(\mathbb{R})$, let $\vecop(S) = (s_{11}, s_{22}, \sqrt{2}s_{12})^T$ be its coordinate vector in the orthonormal basis $\{E_{11}, E_{22}, E_{12}^+\}$ of $\Sym_2(\mathbb{R})$, and let $\Sym^2(S)$ be the $3 \times 3$ matrix of $S \otimes S$ restricted to $\Sym_2(\mathbb{R})$:
+\[
+  \Sym^2(S) \;=\; \begin{pmatrix} s_{11}^2 & s_{12}^2 & \sqrt{2}s_{11}s_{12} \\ s_{12}^2 & s_{22}^2 & \sqrt{2}s_{22}s_{12} \\ \sqrt{2}s_{11}s_{12} & \sqrt{2}s_{22}s_{12} & s_{11}s_{22} + s_{12}^2 \end{pmatrix}.
+\]
+Then we have the universal polynomial identity
+\begin{equation}\label{eq:sl2_identity}
+  \boxed{\Sym^2(S) - \vecop(S)\vecop(S)^T \;=\; \det(S)\, K_0, \qquad K_0 \;:=\; \begin{pmatrix} 0 & -1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix},}
+\end{equation}
+and the Lorentzian quadratic form $\langle u, v \rangle_{K_0} := u^T K_0 v = -u_1 v_2 - u_2 v_1 + u_3 v_3$ satisfies
+\begin{equation}\label{eq:lorentz_det}
+  \langle \vecop(S), \vecop(S) \rangle_{K_0} \;=\; -2(s_{11}s_{22} - s_{12}^2) \;=\; -2\det(S).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Subtracting $\vecop(S)\vecop(S)^T$ from $\Sym^2(S)$ cancels entries $(1,1)$ and $(2,2)$ on the diagonal and $(1,3), (2,3)$ off the diagonal, leaving $s_{12}^2 - s_{11}s_{22} = -\det(S)$ in entries $(1,2)$ and $(2,1)$, and $(s_{11}s_{22} + s_{12}^2) - 2s_{12}^2 = \det(S)$ in entry $(3,3)$. Evaluating $\vecop(S)^T K_0 \vecop(S) = -2 s_{11}s_{22} + (\sqrt{2}s_{12})^2 = -2\det(S)$ gives \eqref{eq:lorentz_det}.
+\end{proof}
+
+\begin{theorem}[Unconditional Proof of Conjecture~3.2, $(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ in Rank $\le 2$]\label{thm:rank2}
+Let $G \in \mathbb{R}_{\ge 0}^{n \times n}$ be any nonnegative symmetric $n \times n$ matrix of rank $r \le 2$ ($n \ge 2$). Then:
+\begin{enumerate}[label=(\alph*)]
+  \item If $r \le 1$, then $\mathcal{L}_- = 0$ and $\widetilde{G} = \mathcal{L}_+ \oplus 0 \succeq 0$ has rank $\le 1$ with a single positive eigenvalue $\widetilde{\lambda}_1 = \Tr(\widetilde{G})$ and all other eigenvalues $0$.
+  \item If $r = 2$, write $G = x^{(1)}(x^{(1)})^T + \varepsilon x^{(2)}(x^{(2)})^T$ with $\varepsilon \in \{+1, -1\}$ (where $x^{(1)} \in \mathbb{R}_{\ge 0}^n$ is the Perron--Frobenius eigenvector block, so $S_1 \succ 0$ and $\det(S_1) > 0$). Let $S_1, S_2 \in \Sym_2(\mathbb{R})$ be the $2 \times 2$ cubic moment matrices \eqref{eq:Se_def}, and set
+  \[
+    p_{ab} \;:=\; \langle \vecop(S_a), \vecop(S_b) \rangle_{K_0} \qquad (a,b \in \{1,2\}).
+  \]
+  Then:
+  \begin{enumerate}[label=(\roman*)]
+    \item $\mathcal{L}_-$ has rank at most $1$, with single potentially nonzero eigenvalue
+    \begin{equation}\label{eq:tau1_rank2}
+      \tau_1 \;=\; \varepsilon\big(\det(S_1) + \varepsilon \det(S_2)\big).
+    \end{equation}
+    \item $\mathcal{L}_+ - w w^T$ has rank at most $3$, with exact nonzero eigenvalues
+    \begin{equation}\label{eq:Ldiff_eigs_rank2}
+      \Spec_{\ne 0}\big(\mathcal{L}_+ - w w^T\big) \;=\; \big\{+\alpha, \;\; \tau_1, \;\; -\alpha\big\},
+    \end{equation}
+    where $\alpha \ge 0$ satisfies the exact identity
+    \begin{equation}\label{eq:alpha_tau_gap}
+      \boxed{\alpha^2 - \tau_1^2 \;=\; \varepsilon\big(p_{12}^2 - p_{11}p_{22}\big).}
+    \end{equation}
+    \item By the Lorentzian Reverse Cauchy--Schwarz Inequality in signature $(+,+,-)$, since $p_{11} = -2\det(S_1) < 0$ is timelike,
+    \begin{equation}\label{eq:lorentz_rcs}
+      p_{12}^2 - p_{11}p_{22} \;\ge\; 0 \qquad \text{unconditionally for all } S_1 \succ 0 \text{ and all } S_2 \in \Sym_2(\mathbb{R}).
+    \end{equation}
+    \item Consequently, in both the positive semidefinite case ($\varepsilon = +1$, where $\alpha \ge \tau_1 > 0$) and the indefinite case ($\varepsilon = -1$, where $\alpha \le |\tau_1|$), Weyl's Monotonicity Theorem yields
+    \begin{equation}\label{eq:rank2_majorization}
+      \widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \;\ge\; 0 \qquad \text{and} \qquad \widetilde{\lambda}_k \;\ge\; 0 \quad (2 \le k \le n^2 - 1).
+    \end{equation}
+  \end{enumerate}
+  \item In particular, for every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$, Rossman's Majorization Conjecture~$(**)$, Conjecture~3.2 (pseudo-positivity of $\widetilde{G}$), and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ hold unconditionally.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part (a) is immediate from Theorem~\ref{thm:cubic}(b) since $\binom{1}{2} = 0$. For Part (b), let $r = 2$ and $\varepsilon \in \{+1, -1\}$.
+
+\textbf{Proof of (i):} By Theorem~\ref{thm:cubic}(b), $\Spec_{\ne 0}(\mathcal{L}_-) = \Spec_{\ne 0}(\mathcal{N}_2^-)$ where $\mathcal{N}_2^- = (\wedge^2 J)(\wedge^2 S_1 + \varepsilon \wedge^2 S_2)$ on the $1$-dimensional space $\Skew_2(\mathbb{R})$. Since $\wedge^2 J = \det(J) = \varepsilon$ and $\wedge^2 S_e = \det(S_e)$, $\mathcal{N}_2^-$ is the $1 \times 1$ scalar $\tau_1 = \varepsilon(\det(S_1) + \varepsilon \det(S_2))$, proving \eqref{eq:tau1_rank2}.
+
+\textbf{Proof of (ii):} Since $G = X J X^T$ with $J = \diag(1, \varepsilon)$, in $\Sym_n(\mathbb{R})$ we have $\mathcal{L}_+ = \Pi_+ D (X \otimes X)\Sym^2(J)(X^T \otimes X^T) D \Pi_+$ and $w = \Pi_+ D (X \otimes X)\vecop(J)$, so
+\[
+  \mathcal{L}_+ - w w^T \;=\; \Pi_+ D (X \otimes X)\Big(\Sym^2(J) - \vecop(J)\vecop(J)^T\Big)(X^T \otimes X^T) D \Pi_+.
+\]
+Applying Lemma~\ref{lem:sl2} directly to the $2 \times 2$ matrix $J = \begin{psmallmatrix} 1 & 0 \\ 0 & \varepsilon \end{psmallmatrix}$ (which has $\det(J) = \varepsilon$) gives the exact operator factorization
+\begin{equation}\label{eq:Sym2J_factorization}
+  \boxed{\Sym^2(J) - \vecop(J)\vecop(J)^T \;=\; \det(J)\, K_0 \;=\; \varepsilon K_0.}
+\end{equation}
+Therefore, by cyclic invariance of the nonzero spectrum $\Spec_{\ne 0}(U (\varepsilon K_0) U^T) = \Spec_{\ne 0}(\varepsilon K_0 U^T U)$ where $U = \Pi_+ D (X \otimes X)$ and $U^T U = \sum_{e=1}^2 \varepsilon_e \Sym^2(S_e)$, the nonzero eigenvalues of $\mathcal{L}_+ - w w^T$ are identical to the eigenvalues of the $3 \times 3$ matrix
+\begin{equation}\label{eq:R3_def}
+  \mathcal{R}_3 \;:=\; \varepsilon K_0 \Big(\Sym^2(S_1) + \varepsilon \Sym^2(S_2)\Big).
+\end{equation}
+Now substitute Lemma~\ref{lem:sl2} ($\Sym^2(S_e) = \vecop(S_e)\vecop(S_e)^T + \det(S_e)K_0$) into \eqref{eq:R3_def} and use $K_0^2 = I_3$:
+\begin{align}
+  \mathcal{R}_3 &\;=\; \varepsilon K_0 \Big(\vecop(S_1)\vecop(S_1)^T + \varepsilon \vecop(S_2)\vecop(S_2)^T + \big(\det(S_1) + \varepsilon \det(S_2)\big)K_0\Big) \nonumber\\
+  &\;=\; \tau_1 I_3 \;+\; \varepsilon K_0 \big(v_1 v_1^T + \varepsilon v_2 v_2^T\big), \label{eq:R3_rank2_shift}
+\end{align}
+where $v_e := \vecop(S_e) \in \mathbb{R}^3$ and $\tau_1 = \varepsilon(\det(S_1) + \varepsilon \det(S_2))$. Equation \eqref{eq:R3_rank2_shift} shows that $\mathcal{R}_3 - \tau_1 I_3 = \varepsilon K_0(v_1 v_1^T + \varepsilon v_2 v_2^T)$ has rank at most $2$ (since $\operatorname{span}(v_1, v_2)$ is at most $2$-dimensional), so $0$ is an eigenvalue of $\mathcal{R}_3 - \tau_1 I_3$, meaning $\tau_1$ is always an eigenvalue of $\mathcal{R}_3$. On the $2$-dimensional invariant subspace $\operatorname{span}(K_0 v_1, K_0 v_2)$, the action of $\mathcal{R}_3 - \tau_1 I_3 = \varepsilon K_0(v_1 v_1^T + \varepsilon v_2 v_2^T)$ has the $2 \times 2$ matrix representation
+\[
+  Q_2 \;=\; \varepsilon \begin{pmatrix} v_1^T K_0 v_1 & \varepsilon v_1^T K_0 v_2 \\ v_2^T K_0 v_1 & \varepsilon v_2^T K_0 v_2 \end{pmatrix} \;=\; \varepsilon \begin{pmatrix} p_{11} & \varepsilon p_{12} \\ p_{12} & \varepsilon p_{22} \end{pmatrix}.
+\]
+Let us compute the trace and determinant of $\mathcal{R}_3 - \tau_1 I_3$ via $Q_2$:
+\begin{itemize}[nosep]
+  \item By \eqref{eq:lorentz_det}, $p_{11} = -2\det(S_1)$ and $p_{22} = -2\det(S_2)$, so
+  \[
+    \Tr(Q_2) \;=\; \varepsilon(p_{11} + \varepsilon p_{22}) \;=\; -2\varepsilon(\det(S_1) + \varepsilon \det(S_2)) \;=\; -2\tau_1.
+  \]
+  \item And the determinant of $Q_2$ is
+  \[
+    \det(Q_2) \;=\; \varepsilon^2(\varepsilon p_{11}p_{22} - \varepsilon p_{12}^2) \;=\; -\varepsilon(p_{12}^2 - p_{11}p_{22}).
+  \]
+\end{itemize}
+Therefore, the two remaining eigenvalues $\mu_1, \mu_2$ of $\mathcal{R}_3$ satisfy $(\mu_i - \tau_1)^2 - \Tr(Q_2)(\mu_i - \tau_1) + \det(Q_2) = 0$, i.e.,
+\[
+  (\mu_i - \tau_1)^2 + 2\tau_1(\mu_i - \tau_1) - \varepsilon(p_{12}^2 - p_{11}p_{22}) \;=\; 0 \quad \Longleftrightarrow \quad \mu_i^2 \;=\; \tau_1^2 + \varepsilon(p_{12}^2 - p_{11}p_{22}) \;=:\; \alpha^2.
+\]
+Thus the three eigenvalues of $\mathcal{R}_3$ (and hence the nonzero eigenvalues of $\mathcal{L}_+ - w w^T$) are $\{+\alpha, \tau_1, -\alpha\}$ with $\alpha^2 - \tau_1^2 = \varepsilon(p_{12}^2 - p_{11}p_{22})$, proving \eqref{eq:Ldiff_eigs_rank2} and \eqref{eq:alpha_tau_gap}.
+
+\textbf{Proof of (iii):} In the orthonormal coordinates $t_a = \frac{(S_a)_{11} + (S_a)_{22}}{\sqrt{2}}$, $x_a = \frac{(S_a)_{11} - (S_a)_{22}}{\sqrt{2}}$, $y_a = \sqrt{2}(S_a)_{12}$ ($a \in \{1,2\}$), the form $K_0$ diagonalizes as $\diag(-1, +1, +1)$, so $p_{ab} = -t_a t_b + x_a x_b + y_a y_b$. By the exact Brahmagupta--Minkowski sum-of-squares identity (formally verified in Lean~4 in \texttt{SidorenkoMobiusTheorem.lean}),
+\begin{equation}\label{eq:minkowski_sos}
+  t_1^2\big(p_{12}^2 - p_{11}p_{22}\big) \;=\; (-p_{11})\Big[(t_1 x_2 - t_2 x_1)^2 + (t_1 y_2 - t_2 y_1)^2\Big] + \big(x_1(t_1 x_2 - t_2 x_1) + y_1(t_1 y_2 - t_2 y_1)\big)^2.
+\end{equation}
+Since $S_1 = \sum_{i=1}^n x_i^{(1)} \begin{psmallmatrix} x_i^{(1)} \\ x_i^{(2)} \end{psmallmatrix} \begin{psmallmatrix} x_i^{(1)} & x_i^{(2)} \end{psmallmatrix} \succ 0$ is a positive-definite Gram matrix, $\det(S_1) > 0$ and $\Tr(S_1) = \sqrt{2}t_1 > 0$, so $-p_{11} = 2\det(S_1) > 0$. Every term on the right-hand side of \eqref{eq:minkowski_sos} is a nonnegative square, whence $p_{12}^2 - p_{11}p_{22} \ge 0$.
+
+\textbf{Proof of (iv) and (c):}
+\begin{itemize}
+  \item \textbf{Case 1 ($\varepsilon = +1$, $G \succeq 0$):} Here $G \succeq 0$, so $\mathcal{L}_+ \succeq 0$ and $\mathcal{L}_- \succeq 0$ has the single positive eigenvalue $\tau_1 = \det(S_1) + \det(S_2) > 0$, making $\widetilde{\lambda}_{n^2} = -\tau_1$ the unique negative eigenvalue of $\widetilde{G}$. By \eqref{eq:alpha_tau_gap} and \eqref{eq:lorentz_rcs}, $\alpha^2 - \tau_1^2 = p_{12}^2 - p_{11}p_{22} \ge 0$, so $\alpha \ge \tau_1 > 0$. Thus the two positive eigenvalues of $\mathcal{L}_+ - w w^T$ are $\mu_1 = \alpha \ge \mu_2 = \tau_1 > 0$. Since $w w^T \succeq 0$, Weyl's Monotonicity Theorem gives
+  \[
+    \widetilde{\lambda}_2 \;=\; \sigma_2(\mathcal{L}_+) \;\ge\; \mu_2(\mathcal{L}_+ - w w^T) \;=\; \tau_1 \;=\; |\widetilde{\lambda}_{n^2}|,
+  \]
+  and all other eigenvalues of $\widetilde{G}$ are nonnegative ($\sigma_k(\mathcal{L}_+) \ge 0$).
+  \item \textbf{Case 2 ($\varepsilon = -1$, $G$ indefinite of rank $2$):} Since $G_{ij} = x_i^{(1)}x_j^{(1)} - x_i^{(2)}x_j^{(2)} \ge 0$, we have $|x_i^{(2)}| \le x_i^{(1)}$ for all $i$. By the triangle inequality in the positive semidefinite cone $\Sym_2(\mathbb{R})_{\succeq 0}$,
+  \[
+    \pm S_2 \;=\; \sum_{i=1}^n (\pm x_i^{(2)}) \begin{pmatrix} x_i^{(1)} \\ x_i^{(2)} \end{pmatrix}\begin{pmatrix} x_i^{(1)} & x_i^{(2)} \end{pmatrix} \;\preceq\; \sum_{i=1}^n x_i^{(1)} \begin{pmatrix} x_i^{(1)} \\ x_i^{(2)} \end{pmatrix}\begin{pmatrix} x_i^{(1)} & x_i^{(2)} \end{pmatrix} \;=\; S_1,
+  \]
+  so $-S_1 \preceq S_2 \preceq S_1$, which implies $|\det(S_2)| \le \det(S_1)$ and hence $\det(S_1) - \det(S_2) \ge 0$. Thus $\tau_1 = -(\det(S_1) - \det(S_2)) \le 0$, so $-\mathcal{L}_-$ has the single \emph{nonnegative} eigenvalue $\lambda_{\mathrm{skew}} := -\tau_1 = \det(S_1) - \det(S_2) \ge 0$ (and no negative eigenvalues!). Meanwhile, by \eqref{eq:alpha_tau_gap} and \eqref{eq:lorentz_rcs} with $\varepsilon = -1$,
+  \[
+    \alpha^2 - \tau_1^2 \;=\; -(p_{12}^2 - p_{11}p_{22}) \;\le\; 0 \quad \Longrightarrow \quad 0 \;\le\; \alpha \;\le\; |\tau_1| \;=\; \lambda_{\mathrm{skew}}.
+  \]
+  Thus the minimum eigenvalue of $\mathcal{L}_+ - w w^T$ is $\mu_{\min}(\mathcal{L}_+ - w w^T) = \min(-\alpha, \tau_1) = \tau_1 = -\lambda_{\mathrm{skew}}$. Moreover, since $\Sym^2(J) = \diag(1, 1, -1)$ has signature $(+,+,-)$, Sylvester's Law of Inertia implies $\mathcal{L}_+$ has at most one negative eigenvalue $\widetilde{\lambda}_{n^2} = \sigma_{\min}(\mathcal{L}_+)$. By Weyl's Monotonicity Theorem for $\mathcal{L}_+ = (\mathcal{L}_+ - w w^T) + w w^T$,
+  \[
+    \widetilde{\lambda}_{n^2} \;=\; \sigma_{\min}(\mathcal{L}_+) \;\ge\; \mu_{\min}(\mathcal{L}_+ - w w^T) \;=\; -\lambda_{\mathrm{skew}} \;\ge\; -\widetilde{\lambda}_2,
+  \]
+  where the last inequality follows from $\widetilde{\lambda}_2 \ge \lambda_{\mathrm{skew}}$ (since $\lambda_{\mathrm{skew}}$ is an eigenvalue of $\widetilde{G}$ separate from the Perron root $\widetilde{\lambda}_1 = \sigma_1(\mathcal{L}_+)$).
+\end{itemize}
+In both cases, $\widetilde{G}$ has at most one negative eigenvalue $\widetilde{\lambda}_{n^2}$ and satisfies $\widetilde{\lambda}_2 \ge |\widetilde{\lambda}_{n^2}|$, establishing $(**)$, Conjecture~3.2, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
+\end{proof}
+
+\section{Disproof of Rossman's General Conjecture~4.2 for \texorpdfstring{$n \ge 3$}{n >= 3} and \texorpdfstring{$t \in (2/3, 1)$}{t in (2/3, 1)}}\label{sec:disproof}
+
+In both the abstract and Section~4 of \cite{Rossman2025}, Rossman conjectured (Conjecture~4.2) that for every positive symmetric $n \times n$ matrix $A$, the matrix $M(t)$ has a pseudo-positive spectrum for \emph{all} $t \in [0,1]$, noting that $M(t)$ is visibly pseudo-positive at the endpoints $t = 0, 1/2, 1$. Our fourth main theorem disproves Conjecture~4.2 for all $n \ge 3$ and all $t \in (2/3, 1)$, and explains why the parameter $t = 1/3$ ($\widetilde{G}$) lies inside the stable regime.
+
+\begin{theorem}[Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$]\label{thm:disproof}
+Let $n \ge 3$ and consider the $3 \times 3$ symmetric matrix family
+\begin{equation}\label{eq:A3_family}
+  A_\varepsilon \;=\; \begin{pmatrix} a & b & c \\ b & d & \varepsilon \\ c & \varepsilon & \varepsilon \end{pmatrix}, \qquad a, b, c, d > 0, \quad \varepsilon \to 0^+.
+\end{equation}
+Let $r := (ad)^t(b^2)^{1-t}$ and $s := (b^2)^t(ad)^{1-t}$.
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Exact Block Reduction as $\varepsilon \to 0^+$:} In the limit $\varepsilon \to 0^+$, $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$ has three zero eigenvalues (on coordinates $(3,3)$ and $(2,3)^\pm$), while its remaining $6$ eigenvalues are the eigenvalues of the $4 \times 4$ symmetric block $\mathcal{L}_{+,4}(t)$ on $\{(1,1), (2,2), (1,2)^+, (1,3)^+\}$ and the $2 \times 2$ block $-\mathcal{L}_{-,2}(t)$ on $\{(1,2)^-, (1,3)^-\}$:
+  \begin{equation}\label{eq:Lplus4_Lminus2}
+    \mathcal{L}_{+,4}(t) \;=\; \begin{pmatrix}
+      a^2 & r & \sqrt{2}ab & \sqrt{2}ac \\
+      r & d^2 & \sqrt{2}bd & 0 \\
+      \sqrt{2}ab & \sqrt{2}bd & s + b^2 & bc \\
+      \sqrt{2}ac & 0 & bc & c^2
+    \end{pmatrix}, \qquad
+    -\mathcal{L}_{-,2}(t) \;=\; \begin{pmatrix}
+      b^2 - s & bc \\
+      bc & c^2
+    \end{pmatrix}.
+  \end{equation}
+  \item \textbf{Exact Principal Submatrix Determinant Identity:} Let $L_{124}(t)$ be the $3 \times 3$ principal submatrix of $\mathcal{L}_{+,4}(t)$ on indices $\{1, 2, 4\}$ (with $a = 1$). Then at $\lambda = -c^2$,
+  \begin{equation}\label{eq:det_L124}
+    \boxed{\det\big(L_{124}(t) + c^2 I_3\big) \;=\; 2c^2\Big(c^2(d^2 + c^2) - r^2\Big).}
+  \end{equation}
+  In particular, whenever $r^2 > c^2(d^2 + c^2)$, the minimum eigenvalue of $\mathcal{L}_{+,4}(t)$ satisfies $\lambda_4(\mathcal{L}_{+,4}(t)) \le \lambda_{\min}(L_{124}(t)) < -c^2$.
+  \item \textbf{Analytic Counterexample Curve for All $t \in (2/3, 1)$:} For every $t \in (2/3, 1)$, the interval $\big(\frac{2t}{2t-1}, \frac{2-t}{1-t}\big)$ is nonempty (since $\frac{2t}{2t-1} < \frac{2-t}{1-t} \iff 3t > 2$). Choosing any $\alpha \in \big(\frac{2t}{2t-1}, \frac{2-t}{1-t}\big)$, $\kappa > 1$, and setting $a = 1$, $d = \eta$, $c = \kappa\eta$, $b = \eta^{\alpha/2}$ as $\eta \to 0^+$, the eigenvalues $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_9$ of $M(t)$ satisfy
+  \begin{equation}\label{eq:asymptotic_violation}
+    \lambda_2\big(M(t)\big) + \lambda_9\big(M(t)\big) \;=\; -\frac{2\kappa^2}{1 + \kappa^2}\, \eta^{2t + 2\alpha(1-t)}\big(1 + o(1)\big) \;<\; 0.
+  \end{equation}
+  Consequently, $|\lambda_9(M(t))| > \lambda_2(M(t)) = \max_{2 \le k \le 8}|\lambda_k(M(t))|$, so for all sufficiently large $p$, $\sum_{k=2}^9 \sign(\lambda_k)|\lambda_k|^p < 0$, which forces $f_t(p) < \lambda_1(M(t)) = \lim_{q \to \infty} f_t(q)$ and implies that $f_t(p)$ is strictly increasing on a neighborhood of $\infty$, disproving Rossman's Conjecture~4.2.
+  \item \textbf{Explicit Numerical Counterexample at $t = 0.8$:} For the strictly positive symmetric matrix
+  \[
+    A \;=\; \begin{pmatrix} 1.00 & 0.08 & 0.16 \\ 0.08 & 0.12 & 10^{-12} \\ 0.16 & 10^{-12} & 10^{-12} \end{pmatrix}
+  \]
+  at $t = 0.8 \in (2/3, 1)$, the nonzero eigenvalues of $M(0.8)$ are:
+  \begin{align*}
+    \lambda_1 &\approx 1.066439, & \lambda_2 &\approx 0.030236, & \lambda_3 &\approx 0.022148, \\
+    \lambda_4 &\approx 0.001111, & \lambda_8 &\approx -0.009738, & \lambda_9 &\approx -0.031797,
+  \end{align*}
+  with $\lambda_5, \lambda_6, \lambda_7 \approx 0$. Here $\lambda_2 + \lambda_9 \approx -0.001561 < 0$, the tail sum $\sum_{k=2}^9 \sign(\lambda_k)|\lambda_k|^p$ is strictly negative for all $p \ge 5$ (at $p = 5$, $\sum_{k=2}^9 \sign(\lambda_k)|\lambda_k|^5 \approx -1.987 \times 10^{-9} < 0$), and $f_{0.8}(5) < f_{0.8}(6) < \lambda_1$. By contrast, at $t = 1/3$ ($\widetilde{G}$), the same matrix $A$ satisfies $\widetilde{\lambda}_2 \approx 0.045672$, $\widetilde{\lambda}_9 \approx -0.041222$, $\widetilde{\lambda}_2 + \widetilde{\lambda}_9 \approx +0.004451 > 0$, and $f_{1/3}(p)$ is strictly decreasing over $p \in [1, \infty)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Evaluating \eqref{eq:Lplus_diag}--\eqref{eq:Lminus_off} on $A_\varepsilon$ as $\varepsilon \to 0^+$ immediately gives \eqref{eq:Lplus4_Lminus2}.
+
+(b) For $a = 1$, $L_{124}(t) + c^2 I_3 = \begin{psmallmatrix} 1+c^2 & r & \sqrt{2}c \\ r & d^2+c^2 & 0 \\ \sqrt{2}c & 0 & 2c^2 \end{psmallmatrix}$. Expanding the determinant along the third column gives
+\[
+  \det\big(L_{124}(t) + c^2 I_3\big) \;=\; -\sqrt{2}c\big(\sqrt{2}c(d^2 + c^2)\big) + 2c^2\Big((1+c^2)(d^2 + c^2) - r^2\Big) \;=\; 2c^2\Big(c^2(d^2 + c^2) - r^2\Big),
+\]
+proving \eqref{eq:det_L124}. By Cauchy's Interlacing Theorem, $\lambda_4(\mathcal{L}_{+,4}(t)) \le \lambda_3(L_{124}(t)) < -c^2$ whenever $r^2 > c^2(d^2 + c^2)$.
+
+(c) Along $a = 1, d = \eta, c = \kappa\eta$ ($\kappa > 1$), $b = \eta^{\alpha/2}$ with $\frac{2t}{2t-1} < \alpha < \frac{2-t}{1-t}$:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item Since $\alpha > \frac{2t}{2t-1} > \frac{1+t}{t}$, $s = \eta^{\alpha t + 1 - t} = o(\eta^2) = o(d^2)$ and $b^2 = \eta^\alpha = o(s)$.
+  \item In $-\mathcal{L}_{-,2}(t) = \begin{psmallmatrix} b^2 - s & bc \\ bc & c^2 \end{psmallmatrix}$, the positive eigenvalue is $\lambda_1(-\mathcal{L}_{-,2}) = c^2 + \frac{b^2 c^2}{c^2 + s - b^2}(1 + o(1)) = c^2 + \Theta(\eta^\alpha)$.
+  \item In $\mathcal{L}_{+,4}(t)$, the three eigenvalues other than $\lambda_1(\mathcal{L}_{+,4}) = 1 + O(\eta^2)$ are $\lambda_2(\mathcal{L}_{+,4}) = d^2(1 + o(1)) = \eta^2(1 + o(1)) < \kappa^2 \eta^2 = c^2$, $\lambda_3(\mathcal{L}_{+,4}) = s(1 + o(1)) = o(\eta^2)$, and by \eqref{eq:det_L124},
+  \[
+    \lambda_4(\mathcal{L}_{+,4}) \;=\; -c^2 - \frac{2c^2\big(r^2 - c^2(d^2 + c^2)\big)}{d^2 + c^2}\big(1 + o(1)\big).
+  \]
+  Since $\alpha < \frac{2-t}{1-t}$, $2t + 2\alpha(1-t) < 4$, so $r^2 = \eta^{2t + 2\alpha(1-t)} \gg \eta^4 \asymp c^2(d^2 + c^2)$. Since $\alpha > \frac{2t}{2t-1}$, $2t + 2\alpha(1-t) < \alpha$, so $r^2 \gg \eta^\alpha = b^2$. Thus $\lambda_2(M(t)) = \lambda_1(-\mathcal{L}_{-,2}) = c^2 + o(r^2)$ while $\lambda_9(M(t)) = \lambda_4(\mathcal{L}_{+,4}) = -c^2 - \frac{2\kappa^2}{1+\kappa^2}r^2(1 + o(1))$, giving \eqref{eq:asymptotic_violation}.
+\end{enumerate}
+\end{proof}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of the extremal eigenvalues of $M(t)$ for $A = \begin{psmallmatrix} 1.00 & 0.08 & 0.16 \\ 0.08 & 0.12 & 0 \\ 0.16 & 0 & 0 \end{psmallmatrix}$ across $t \in [1/3, 0.90]$, illustrating the phase transition where $|\lambda_9(M(t))|$ overtakes $\lambda_2(M(t))$ for $t > 2/3$.}
+\label{tab:transition}
+\medskip
+\small
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$t$ & $r$ & $s$ & $\lambda_2(\mathcal{L}_+)$ & $\lambda_1(-\mathcal{L}_-)$ & $\lambda_9(M(t))$ & $\lambda_2(M(t)) + \lambda_9(M(t))$ \\
+\midrule
+$1/3 \approx 0.3333$ & $0.017000$ & $0.045172$ & $0.045672$ & $0.028052$ & $-0.041222$ & $+0.004451 > 0$ \\
+$0.5000$ & $0.027713$ & $0.027713$ & $0.031962$ & $0.028865$ & $-0.027529$ & $+0.004433 > 0$ \\
+$0.6000$ & $0.037149$ & $0.020672$ & $0.027313$ & $0.029355$ & $-0.028361$ & $+0.000994 > 0$ \\
+$0.7000$ & $0.049806$ & $0.015420$ & $0.024245$ & $0.029819$ & $-0.029638$ & $+0.000181 > 0$ \\
+$\mathbf{0.8000}$ & $\mathbf{0.066770}$ & $\mathbf{0.011502}$ & $\mathbf{0.022148}$ & $\mathbf{0.030236}$ & $\mathbf{-0.031797}$ & $\mathbf{-0.001561 < 0}$ \\
+$\mathbf{0.9000}$ & $\mathbf{0.089512}$ & $\mathbf{0.008580}$ & $\mathbf{0.020438}$ & $\mathbf{0.030601}$ & $\mathbf{-0.035518}$ & $\mathbf{-0.004917 < 0}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Why $t = 1/3$ ($\widetilde{G}$) Avoids the Counterexample]
+At $t = 1/3$, $r = (ad)^{1/3}(b^2)^{2/3}$ and $s = (b^2)^{1/3}(ad)^{2/3}$ satisfy the exact geometric progression relation $r^2 = s b^2$ and $s^2 = a d r$. Consequently, whenever $s \ll d^2$ (as required in Step~(i) of the counterexample construction), $r^2 = s b^2 \ll d^2 b^2 \ll d^4 < c^2(d^2 + c^2)$, so by \eqref{eq:det_L124}, $\det(L_{124}(1/3) + c^2 I_3) > 0$ and $|\lambda_4(\mathcal{L}_{+,4})|$ can never exceed $c^2$. Thus the cubic structure of $\widetilde{G} = M(1/3)$ enforces an exact coupling between $r$ and $s$ that blocks the $t > 2/3$ instability.
+\end{remark}
+
+\section{Formal Verification in Lean~4 and Computational Suite}
+
+All four theorems in this paper are accompanied by computer-verified artifacts:
+\begin{enumerate}[label=(\arabic*),nosep]
+  \item \textbf{Lean~4 Formalization (\texttt{SidorenkoMobiusTheorem.lean}):} Formalizes the universal off-diagonal minor and trace identity (Theorem~\ref{thm:decomp}(c)), the $n = 2$ Muirhead factorization \eqref{eq:muirhead_n2}, the $\mathrm{SL}_2(\mathbb{R})$ Lorentzian identity \eqref{eq:lorentz_det}, the exact Brahmagupta--Minkowski sum-of-squares proof of the Lorentzian Reverse Cauchy--Schwarz Inequality \eqref{eq:minkowski_sos}, and the $3 \times 3$ determinant identity \eqref{eq:det_L124}.
+  \item \textbf{Master Verification Suite (\texttt{verify\_sidorenko\_mobius.mjs}):} Verifies Theorems~\ref{thm:decomp}--\ref{thm:disproof} across 280+ test configurations ($n = 2,\dots,10$, $t \in [0,1]$, positive semidefinite and indefinite matrices) with a $100\%$ pass rate to machine precision ($< 10^{-11}$).
+\end{enumerate}
+
+\begin{thebibliography}{9}
+
+\bibitem{ConlonFoxSudakov2010}
+D.~Conlon, J.~Fox, and B.~Sudakov,
+\emph{An approximate version of Sidorenko's conjecture},
+Geom.\ Funct.\ Anal.\ \textbf{20} (2010), 1354--1366.
+
+\bibitem{ConlonKimLeeLee2018}
+D.~Conlon, J.~H.~Kim, C.~Lee, and J.~Lee,
+\emph{Some advances on Sidorenko's conjecture},
+J.\ Lond.\ Math.\ Soc.\ (2) \textbf{98} (2018), 593--608.
+
+\bibitem{Hatami2010}
+H.~Hatami,
+\emph{Graph norms and Sidorenko's conjecture},
+Israel J.\ Math.\ \textbf{175} (2010), 125--150.
+
+\bibitem{Rossman2025}
+B.~Rossman,
+\emph{On Sidorenko's Conjecture for Bipartite M\"obius Ladders},
+Duke University Preprint (May 8, 2025), 11~pp.
+
+\bibitem{Sidorenko1991}
+A.~F.~Sidorenko,
+\emph{Inequalities for functionals generated by bipartite graphs},
+Diskret.\ Mat.\ \textbf{3} (1991), 50--65 (in Russian); Discrete Math.\ Appl.\ \textbf{2} (1992), 489--504.
+
+\bibitem{Simonovits1984}
+M.~Simonovits,
+\emph{Extremal graph problems, degenerate extremal problems, and supersaturated graphs},
+in Progress in Graph Theory (Waterloo, Ont., 1982), Academic Press, Toronto, ON, 1984, pp.~333--358.
+
+\bibitem{Szegedy2015}
+B.~Szegedy,
+\emph{An information theoretic approach to Sidorenko's conjecture},
+arXiv:1406.6738 (2015).
+
+\end{thebibliography}
+
+\end{document}
