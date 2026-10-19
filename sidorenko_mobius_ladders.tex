@@ -99,17 +99,17 @@ Given a nonnegative symmetric $n \times n$ matrix $G$, Rossman defines the $n^2 
 \end{equation}
 where $D = \diag(\sqrt{G_{ij}})_{i,j=1}^n$ is the $n^2 \times n^2$ diagonal matrix of entrywise square roots and $P$ is the $n^2 \times n^2$ transpose permutation matrix defined by $P_{ij,kl} = \delta_{i,l}\delta_{j,k}$ (so $P \vecop(V) = \vecop(V^T)$ for all $V \in \mathbb{R}^{n \times n}$). Rossman proved \cite[Lemma~2.1]{Rossman2025} that for every integer $m \ge 1$,
 \begin{equation}\label{eq:trace_ladder}
-  \homop(BL_{2m}, G) \;=\; \Tr\big(\widetilde{G}^m\big), \qquad \homop(K_2, G) \;=\; \sum_{i,j=1}^n G_{ij} \;=\; \Tr(\widetilde{G}).
+  \homop(BL_{2m}, G) \;=\; \Tr\big(\widetilde{G}^m\big), \qquad \Tr(\widetilde{G}) \;=\; \sum_{i,j=1}^n G_{ij}^3, \qquad \homop(K_{3,3}, G) \;=\; \Tr\big(\widetilde{G}^3\big).
 \end{equation}
-Writing $\widetilde{\lambda}_1 \ge \widetilde{\lambda}_2 \ge \dots \ge \widetilde{\lambda}_{n^2}$ for the real eigenvalues of $\widetilde{G}$, Sidorenko's Conjecture for $BL_{2m}$ is therefore equivalent to the purely spectral moment inequality
+Writing $\widetilde{\lambda}_1 \ge \widetilde{\lambda}_2 \ge \dots \ge \widetilde{\lambda}_{n^2}$ for the real eigenvalues of $\widetilde{G}$ and using Sidorenko's inequality for $K_{3,3} \cong BL_6$ ($\homop(K_{3,3}, G)/n^6 \ge (\homop(K_2, G)/n^2)^9$), Sidorenko's inequality for $BL_{2m}$ ($m \ge 3$) follows from the purely spectral moment inequality
 \begin{equation}\label{eq:spectral_sidorenko}
-  \Tr\big(\widetilde{G}^m\big) \;=\; \sum_{k=1}^{n^2} \widetilde{\lambda}_k^m \;\ge\; \frac{\big(\Tr \widetilde{G}\big)^m}{n^{2m}} \;=\; \frac{1}{n^{2m}}\left(\sum_{k=1}^{n^2} \widetilde{\lambda}_k\right)^m.
+  \Tr\big(\widetilde{G}^m\big) \;=\; \sum_{k=1}^{n^2} \widetilde{\lambda}_k^m \;\ge\; \big(\Tr(\widetilde{G}^3)\big)^{m/3} \;\ge\; n^{2m}\left(\frac{\homop(K_2, G)}{n^2}\right)^{3m}.
 \end{equation}
-For even $m$, $\widetilde{\lambda}_k^m = |\widetilde{\lambda}_k|^m \ge 0$, so \eqref{eq:spectral_sidorenko} is immediate from H\"older's inequality and $\Tr(\widetilde{G}) \ge 0$. For odd $m \ge 3$ (and in particular $m = 5$, corresponding to $K_{5,5} \setminus C_{10}$), the negative eigenvalues of $\widetilde{G}$ enter $\Tr(\widetilde{G}^m)$ with negative signs. To control these negative eigenvalues, Rossman introduced the concept of a \emph{pseudo-positive spectrum} \cite[Definition~3.1]{Rossman2025}: a real symmetric matrix with eigenvalues $\mu_1,\dots,\mu_N$ has a pseudo-positive spectrum if the signed $\ell_p$-norm functional
+For even $m$, $\widetilde{\lambda}_k^m = |\widetilde{\lambda}_k|^m \ge 0$, so $\Tr(\widetilde{G}^m) \ge 0$ is immediate. For odd $m \ge 3$ (and in particular $m = 5$, corresponding to $K_{5,5} \setminus C_{10}$), the negative eigenvalues of $\widetilde{G}$ enter $\Tr(\widetilde{G}^m)$ with negative signs. To control these negative eigenvalues, Rossman introduced the concept of a \emph{pseudo-positive spectrum} \cite[Definition~3.1]{Rossman2025}: a real symmetric matrix with eigenvalues $\mu_1,\dots,\mu_N$ has a pseudo-positive spectrum if the signed $\ell_p$-norm functional
 \begin{equation}\label{eq:fp}
   f(p) \;:=\; \left(\sum_{k=1}^N \sign(\mu_k)|\mu_k|^p\right)^{1/p}
 \end{equation}
-is well-defined, nonnegative, and nonincreasing over $p \in [1, \infty)$. Since $f(5) \le f(3)$ implies $\Tr(\widetilde{G}^5) \ge (\Tr(\widetilde{G}^3))^{5/3} = \homop(K_{3,3}, G)^{5/3} \ge \homop(K_2, G)^5 / n^{10}$ (by Sidorenko's inequality for $K_{3,3} \cong BL_6$), pseudo-positivity of $\widetilde{G}$ immediately implies Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
+is well-defined, nonnegative, and nonincreasing over $p \in [1, \infty)$. Since $f(5) \le f(3)$ implies $\Tr(\widetilde{G}^5) \ge (\Tr(\widetilde{G}^3))^{5/3} = \homop(K_{3,3}, G)^{5/3} \ge n^{10}(\homop(K_2, G)/n^2)^{15}$, pseudo-positivity of $\widetilde{G}$ immediately implies Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
 
 Furthermore, by setting $A := G^{\circ 3/2}$ (so $G = A^{\circ 2/3}$), Rossman embedded $\widetilde{G} = M(1/3)$ into the continuous one-parameter family of $n^2 \times n^2$ matrices $M(t)$ for $t \in [0, 1]$:
 \begin{equation}\label{eq:Mt}
@@ -296,9 +296,9 @@ We now apply Theorems~\ref{thm:decomp} and~\ref{thm:cubic} to prove Rossman's Co
 \begin{proposition}[Complete Resolution of Conjecture~4.2 for $n = 2$]\label{prop:n2}
 Let $A = \begin{psmallmatrix} a & b \\ b & d \end{psmallmatrix}$ be any positive symmetric $2 \times 2$ matrix ($a, b, d > 0$) and let $t \in [0,1]$. Set $r := (ad)^t(b^2)^{1-t}$ and $s := (b^2)^t(ad)^{1-t}$. Then the four eigenvalues $\lambda_1 \ge \lambda_2 \ge \lambda_3 \ge \lambda_4$ of $M(t)$ satisfy
 \[
-  \lambda_2 + \lambda_4 \;\ge\; 0 \qquad \text{and} \qquad \lambda_3 + \lambda_4 \;\ge\; 0 \quad \text{whenever } \lambda_4 < 0,
+  \lambda_2 + \lambda_4 \;\ge\; 0 \qquad \text{and} \qquad \lambda_3 \;\ge\; 0 \quad (\text{hence } \lambda_2 + \lambda_3 + \lambda_4 \ge 0),
 \]
-and consequently $M(t)$ has a pseudo-positive spectrum for every $t \in [0,1]$.
+and consequently $M(t)$ satisfies the majorization condition~$(**)$ and has a pseudo-positive spectrum for every $t \in [0,1]$.
 \end{proposition}
 
 \begin{proof}
