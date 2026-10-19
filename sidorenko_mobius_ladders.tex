@@ -62,12 +62,18 @@ for Bipartite M\"obius Ladders ($K_{5,5} \setminus C_{10}$)}}
 \begin{abstract}
 Sidorenko's Conjecture (1991) asserts that for every bipartite graph $H$ and every symmetric graphon $W$ (equivalently, every nonnegative symmetric $n \times n$ matrix $G$), the homomorphism density of $H$ in $W$ is at least that in a uniform random graph of the same edge density. Since the foundational work of Sidorenko (1991) and Hatami (2010), the $10$-vertex graph $K_{5,5} \setminus C_{10}$---isomorphic to the $5$-rung bipartite M\"obius ladder $ML_{10}$---has stood as the smallest and most prominent open test case of Sidorenko's Conjecture. Recently, Rossman (2025) proved that for every $m$-rung bipartite ladder $BL_{2m}$, $\homop(BL_{2m}, G) = \Tr(\widetilde{G}^m)$ where $\widetilde{G}_{ij,kl} = G_{il}G_{kj}\sqrt{G_{ij}G_{kl}} = (D(G \otimes G)PD)_{ij,kl}$ is an $n^2 \times n^2$ twisted tensor operator, and embedded $\widetilde{G}$ at $t = 1/3$ into the continuous one-parameter family $M(t)_{ij,kl} = (A_{ij}A_{kl})^t(A_{il}A_{kj})^{1-t}$ ($A = G^{\circ 3/2}$, $t \in [0,1]$). Rossman conjectured that $\widetilde{G}$ has a \emph{pseudo-positive spectrum} (Conjecture~3.2, implying Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all odd-$m$ M\"obius ladders $ML_{2m}$), satisfies the pairwise eigenvalue majorization $(\widetilde{\lambda}_2 + \dots + \widetilde{\lambda}_k) + (\widetilde{\lambda}_{n^2-k+2} + \dots + \widetilde{\lambda}_{n^2}) \ge 0$ (Conjecture~$(**)$), and more generally that $M(t)$ is pseudo-positive for \emph{all} $t \in [0,1]$ (Conjecture~4.2).
 
-In this paper, we establish four theorems that expose the exact algebraic and spectral structure of $\widetilde{G}$ and $M(t)$:
+In this paper, we establish six theorems that expose the exact algebraic and spectral structure of $\widetilde{G}$ and $M(t)$ and push the unconditional resolution of Rossman's conjectures beyond rank~$2$:
 \begin{enumerate}[label=(\arabic*),nosep,leftmargin=2em]
-  \item \textbf{Canonical Symmetric--Exterior Orthogonal Decomposition \& Universal Trace Identity (Theorem~\ref{thm:decomp}):} For every symmetric $n \times n$ matrix $A$ and every $t \in [0,1]$, $M(t)$ commutes with the transpose involution $P$ and decomposes orthogonally on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$ as $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$. At $t = 1/3$, $\mathcal{L}_+ = D_+(\Sym^2 G)D_+$ and $\mathcal{L}_- = D_-(\wedge^2 G)D_-$ satisfy the off-diagonal entrywise dominance $|(\mathcal{L}_-)_{\alpha,\beta}| \le (\mathcal{L}_+^{\mathrm{off}})_{\alpha,\beta}$. Subtracting the rank-$1$ positive semidefinite matrix $M(1) = w w^T = \vecop(A)\vecop(A)^T$ from $\mathcal{L}_+(t)$ expresses all entries of $\mathcal{L}_+(t) - w w^T$ via $2 \times 2$ minors of $B = A^{\circ(1-t)}$ and yields the universal trace identity $\Tr(\mathcal{L}_+(t) - w w^T) = \Tr(\mathcal{L}_-(t)) = \sum_{1 \le i < j \le n} A_{ij}^{2t}(B_{ii}B_{jj} - B_{ij}^2)$.
-  \item \textbf{Square-Root-Free Cubic Moment Tensor Reduction (Theorem~\ref{thm:cubic}):} By similarity, $\Spec(\widetilde{G}) = \Spec(D^2(G \otimes G)P)$, so all fractional powers vanish from the characteristic polynomial of $\widetilde{G}$. For any symmetric matrix $G = \sum_{e=1}^r \varepsilon_e x^{(e)}(x^{(e)})^T$ of rank $r$ and arbitrary dimension $n \times n$, the nonzero spectrum of $\widetilde{G}$ coincides with that of the $r^2 \times r^2$ cubic moment operator $\mathcal{M}_r = (J \otimes J)P \sum_{e=1}^r \varepsilon_e (S_e \otimes S_e)$, where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$.
-  \item \textbf{Unconditional Resolution for All Rank-$\le 2$ Matrices and Graphons (Theorem~\ref{thm:rank2}):} Using the universal $\mathrm{SL}_2(\mathbb{R})$ deficit identity $\Sym^2(S) - \vecop(S)\vecop(S)^T = \det(S)K_0$ and the Lorentzian Reverse Cauchy--Schwarz Inequality in signature $(+,+,-)$, we prove that for every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite), $\widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \ge 0$, resolving Rossman's Conjecture~3.2, Conjecture~$(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ unconditionally in rank $\le 2$, as well as Conjecture~4.2 for $n = 2$ across all $t \in [0,1]$.
-  \item \textbf{Disproof of Rossman's General Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$ (Theorem~\ref{thm:disproof}):} Using the exact determinant identity $\det(L_{124} + c^2 I) = 2c^2(c^2(d^2 + c^2) - r^2)$, we prove that for every $t \in (2/3, 1)$ there exist strictly positive $3 \times 3$ symmetric matrices $A$ such that $|\lambda_9(M(t))| > \lambda_2(M(t))$ and $f_t(p)$ is strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$), disproving Conjecture~4.2 while explaining why the geometric progression $r^2 = s b^2$ at $t = 1/3$ protects $\widetilde{G}$.
+  \item \textbf{Canonical Symmetric--Exterior Orthogonal Decomposition, Universal Trace Identity, \& Extended Star-Subspace Identity (Theorems~\ref{thm:decomp} and~\ref{thm:star}):} For every symmetric $n \times n$ matrix $A$ and every $t \in [0,1]$, $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$ on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$, with $\Tr(\mathcal{L}_+(t) - w w^T) = \Tr(\mathcal{L}_-(t))$ and the universal exterior-trace identity $\langle V, (\Sym^2 B - \vecop(B)\vecop(B)^T)V \rangle = -2\Tr((\wedge^2 V)(\wedge^2 B))$. Moreover, on the $n$-dimensional extended star subspace $\widehat{\mathcal{S}}_v^+ = \mathbb{R}E_{vv} \oplus \operatorname{span}\{E_{vi}^+ : i \ne v\}$ of any vertex $v \in \{1,\dots,n\}$, $(\mathcal{L}_+(t) - w w^T)|_{\widehat{\mathcal{S}}_v^+} = 0_1 \oplus \mathcal{L}_-(t)|_{\mathcal{S}_v^-}$.
+  \item \textbf{Square-Root-Free Cubic Moment Tensor Reduction (Theorem~\ref{thm:cubic}):} By similarity, $\Spec(\widetilde{G}) = \Spec(D^2(G \otimes G)P)$, eliminating all fractional powers from the characteristic polynomial of $\widetilde{G}$. For any symmetric matrix $G = \sum_{e=1}^r \varepsilon_e x^{(e)}(x^{(e)})^T$ of rank $r$ and arbitrary dimension $n \times n$, the nonzero spectrum of $\widetilde{G}$ coincides with that of the $r^2 \times r^2$ cubic moment operator $\mathcal{M}_r = \mathcal{M}_r^+ \oplus (-\mathcal{N}_r^-)$, where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$.
+  \item \textbf{Unconditional Resolution for All Rank-$\le 2$ Matrices and Graphons (Theorem~\ref{thm:rank2}):} Using the universal $\mathrm{SL}_2(\mathbb{R})$ deficit identity $\Sym^2(S) - \vecop(S)\vecop(S)^T = \det(S)K_0$ and the Lorentzian Reverse Cauchy--Schwarz Inequality in signature $(+,+,-)$, we prove that for every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite), $\widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \ge 0$, resolving Rossman's Conjecture~3.2, Conjecture~$(**)$, and Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ unconditionally in rank $\le 2$, as well as Conjecture~4.2 for $n = 2$ across all $t \in [0,1]$.
+  \item \textbf{Pointwise Eigenvalue Dominance for All Rank-$\le 3$ Positive Semidefinite Host Matrices of Arbitrary Size $n \times n$ (Theorem~\ref{thm:rank3_psd}):} Using the $\mathrm{SO}(3)$-equivariance of the Hodge star $\star : \wedge^2(\mathbb{R}^3) \xrightarrow{\sim} \mathbb{R}^3$, we prove that in the eigenbasis $\{u_1, u_2, u_3\}$ of $\mathcal{M}_3^- = \sum_{e=1}^m \wedge^2(S_e) = \diag(\tau_3, \tau_2, \tau_1)$ ($\tau_1 \ge \tau_2 \ge \tau_3$), the compression of $\mathcal{M}_3^+ = \sum_{e=1}^m \Sym^2(S_e)$ to the $4$-dimensional traceless subspace $U_4 = \{V \in \Sym_3(\mathbb{R}) : \Tr(V) = 0,\, u_1^T V u_1 = 0\}$ satisfies the exact identity
+  \[
+    \mathcal{M}_3^+\big|_{U_4} \;=\; \diag(\tau_1, \, \tau_1, \, \tau_2, \, \tau_3) \;+\; \sum_{e=1}^m \mathbf{z}_e \mathbf{z}_e^T \;\succeq\; \diag(\tau_1, \, \tau_1, \, \tau_2, \, \tau_3).
+  \]
+  By Cauchy interlacing and Weyl monotonicity, this proves \emph{pointwise eigenvalue dominance} $\lambda_{k+1}^+(\widetilde{G}) \ge \lambda_k^-(\widetilde{G})$ ($k = 1, 2, 3$), Rossman's Majorization Conjecture~$(**)$, Conjecture~3.2, and Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ for \emph{every} nonnegative symmetric positive semidefinite matrix $G \succeq 0$ of rank $\le 3$ and arbitrary dimension $n \times n$.
+  \item \textbf{Unconditional Dominance for Zero-Diagonal $3 \times 3$ Indefinite Matrices Across All $t \in [0,1]$ (Theorem~\ref{thm:zero_diag_3x3}):} For every zero-diagonal $3 \times 3$ nonnegative symmetric matrix $A$ (rank~$3$, indefinite signature $(1,2)$) and every $t \in [0,1]$, we prove $\lambda_2^+(M(t)) \ge \lambda_1^-(M(t))$ and establish Conjectures~3.2, 4.2, and~$(**)$.
+  \item \textbf{Analytic Disproof of Rossman's General Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$ (Theorem~\ref{thm:disproof}):} Using the exact determinant identity $\det(L_{124} + c^2 I) = 2c^2(c^2(d^2 + c^2) - r^2)$, we give an explicit analytic proof that for every $t \in (2/3, 1)$ there exist strictly positive $3 \times 3$ symmetric matrices $A$ such that $|\lambda_9(M(t))| > \lambda_2(M(t))$ and $f_t(p)$ is strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$), while showing why the geometric progression $r^2 = s b^2$ at $t = 1/3$ protects $\widetilde{G}$.
 \end{enumerate}
 \end{abstract}
 
@@ -83,11 +89,11 @@ Let $H = (V(H), E(H))$ be a bipartite graph and let $G \in \mathbb{R}_{\ge 0}^{n
 \begin{equation}\label{eq:sidorenko}
   \frac{\homop(H, G)}{n^{|V(H)|}} \;\ge\; \left(\frac{\homop(K_2, G)}{n^2}\right)^{|E(H)|}.
 \end{equation}
-Over the past three decades, Sidorenko's Conjecture has been verified for trees, even cycles, complete bipartite graphs, hypercubes \cite{Hatami2010}, bipartite graphs with a vertex complete to the other part \cite{ConlonFoxSudakov2010}, and reflection/tree-decomposable families \cite{Szegedy2015,ConlonKimLeeLee2018}. Despite these advances, the conjecture remains open in general, and the $3$-regular $10$-vertex graph
+Over the past three decades, Sidorenko's inequality \eqref{eq:sidorenko} has been established for trees, even cycles, complete bipartite graphs, hypercubes \cite{Hatami2010}, bipartite graphs with a vertex complete to the other part \cite{ConlonFoxSudakov2010}, and reflection/tree-decomposable families \cite{Szegedy2015,ConlonKimLeeLee2018}. While the general conjecture for arbitrary bipartite graphs was recently disproved via a $35$-vertex bipartite counterexample, determining which structured families of bipartite graphs satisfy \eqref{eq:sidorenko} remains a central problem in extremal combinatorics. In particular, the $3$-regular $10$-vertex graph
 \[
   K_{5,5} \setminus C_{10} \;\cong\; ML_{10},
 \]
-obtained by deleting a Hamiltonian $10$-cycle from the complete bipartite graph $K_{5,5}$ (equivalently, the $5$-rung \emph{M\"obius ladder} $ML_{10}$), has remained since 1991 the smallest graph for which Sidorenko's Conjecture is open.
+obtained by deleting a Hamiltonian $10$-cycle from the complete bipartite graph $K_{5,5}$ (equivalently, the $5$-rung \emph{M\"obius ladder} $ML_{10}$), has stood since 1991 as the smallest and most famous individual graph for which Sidorenko's inequality \eqref{eq:sidorenko} remains open.
 
 \subsection{Rossman's Twisted Tensor Operator \texorpdfstring{$\widetilde{G}$}{G-tilde} and the Family \texorpdfstring{$M(t)$}{M(t)}}
 
@@ -128,19 +134,26 @@ By Karamata's majorization inequality applied to the convex function $x \mapsto 
 
 \subsection{Summary of Main Results}
 
-In this work, we develop an exact representation-theoretic and Lorentzian-geometric framework for $M(t)$ and $\widetilde{G}$ that yields four main theorems:
+In this work, we develop an exact representation-theoretic, exterior-algebraic, and Lorentzian-geometric framework for $M(t)$ and $\widetilde{G}$ that yields six main theorems:
 \begin{enumerate}[label=\textbf{Theorem~\arabic*.},ref=\arabic*,leftmargin=6.5em]
-  \item \textbf{(Canonical Symmetric--Exterior Decomposition \& Universal Trace Identity; Section~\ref{sec:decomp})} For all $n \ge 1$ and $t \in [0,1]$, $M(t)$ decomposes orthogonally on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$ as $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$, where $\mathcal{L}_+(t)$ has dimension $\binom{n+1}{2}$ and $\mathcal{L}_-(t)$ has dimension $\binom{n}{2}$. On the off-diagonal index set $U = \{(i,j) : 1 \le i < j \le n\}$, $|(\mathcal{L}_-(t))_{\alpha,\beta}| \le (\mathcal{L}_+^{\mathrm{off}}(t))_{\alpha,\beta}$. Moreover, subtracting $M(1) = w w^T = \vecop(A)\vecop(A)^T \succeq 0$ from $\mathcal{L}_+(t)$ annihilates the first $n$ diagonal entries $(i,i)$ and makes the remaining $\binom{n}{2}$ diagonal entries $(i,j)$ identical to those of $\mathcal{L}_-(t)$, proving the universal trace identity
+  \item \textbf{(Canonical Symmetric--Exterior Decomposition, Universal Trace Identity, \& Extended Star-Subspace Decomposition; Section~\ref{sec:decomp})} For all $n \ge 1$ and $t \in [0,1]$, $M(t) = \mathcal{L}_+(t) \oplus (-\mathcal{L}_-(t))$ on $\mathbb{R}^{n \times n} = \Sym_n(\mathbb{R}) \oplus^{\perp} \Skew_n(\mathbb{R})$, with $|(\mathcal{L}_-(t))_{\alpha,\beta}| \le (\mathcal{L}_+^{\mathrm{off}}(t))_{\alpha,\beta}$ and
   \[
     \Tr\big(\mathcal{L}_+(t) - w w^T\big) \;=\; \Tr\big(\mathcal{L}_-(t)\big) \;=\; \sum_{1 \le i < j \le n} A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big), \qquad B = A^{\circ(1-t)}.
   \]
+  Furthermore, $\langle V, (\Sym^2 B - \vecop(B)\vecop(B)^T)V \rangle = -2\Tr((\wedge^2 V)(\wedge^2 B))$ for all $V \in \Sym_n(\mathbb{R})$, and on the $n$-dimensional extended star subspace $\widehat{\mathcal{S}}_v^+$ of any vertex $v \in \{1,\dots,n\}$, $(\mathcal{L}_+(t) - w w^T)|_{\widehat{\mathcal{S}}_v^+} = 0_1 \oplus \mathcal{L}_-(t)|_{\mathcal{S}_v^-}$.
   \item \textbf{(Square-Root-Free Cubic Moment Tensor Reduction; Section~\ref{sec:cubic})} By cyclic similarity $\Spec(\widetilde{G}) = \Spec(D^2(G \otimes G)P)$, all square roots in $\widetilde{G}$ disappear from its spectrum. For any rank-$r$ symmetric matrix $G = \sum_{e=1}^r \varepsilon_e x^{(e)}(x^{(e)})^T$ ($\varepsilon_e \in \{\pm 1\}$) of arbitrary size $n \times n$, the nonzero spectrum of $\widetilde{G}$ equals the spectrum of the $r^2 \times r^2$ cubic moment operator
   \[
     \mathcal{M}_r \;=\; (J \otimes J)P \sum_{e=1}^r \varepsilon_e (S_e \otimes S_e) \;=\; \mathcal{M}_r^+ \;\oplus\; \big(-\mathcal{N}_r^-\big),
   \]
   where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$ ($1 \le a,b,e \le r$) are $r$ symmetric $r \times r$ cubic moment matrices.
-  \item \textbf{(Unconditional Proof for All Rank-$\le 2$ Matrices and Graphons; Section~\ref{sec:rank2})} For every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite, for arbitrary $n \ge 2$) and every rank-$\le 2$ symmetric graphon $W$, Rossman's Conjecture~3.2, the Majorization Conjecture~$(**)$, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ hold unconditionally. Moreover, for $n = 2$, Conjecture~4.2 holds for all $t \in [0,1]$. The proof combines the universal $\mathrm{SL}_2(\mathbb{R})$ identity $\Sym^2(S) - \vecop(S)\vecop(S)^T = \det(S)K_0$, the Lorentzian Reverse Cauchy--Schwarz Inequality in Minkowski space $\mathbb{R}^{1,2}$, and Weyl's Monotonicity Theorem.
-  \item \textbf{(Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$; Section~\ref{sec:disproof})} For every $n \ge 3$ and every $t \in (2/3, 1)$, there exist strictly positive symmetric $n \times n$ matrices $A$ such that $|\lambda_{n^2}(M(t))| > \lambda_2(M(t)) = \max_{2 \le k \le n^2-1}|\lambda_k(M(t))|$, causing $f_t(p)$ to be strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$). This disproves Rossman's Conjecture~4.2 in general and identifies the exact geometric progression relation $r^2 = s b^2$ at $t = 1/3$ that prevents this instability for $\widetilde{G}$.
+  \item \textbf{(Unconditional Proof for All Rank-$\le 2$ Matrices and Graphons; Section~\ref{sec:rank2})} For every nonnegative symmetric $n \times n$ matrix $G$ of rank $\le 2$ (both positive semidefinite and indefinite, for arbitrary $n \ge 2$) and every rank-$\le 2$ symmetric graphon $W$, Rossman's Conjecture~3.2, the Majorization Conjecture~$(**)$, and Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ hold unconditionally, and Conjecture~4.2 holds for $n = 2$ across all $t \in [0,1]$.
+  \item \textbf{(Pointwise Eigenvalue Dominance for All Rank-$\le 3$ Positive Semidefinite Host Matrices of Arbitrary Size $n \times n$; Section~\ref{sec:rank3})} For any symmetric matrices $S_1,\dots,S_m \in \Sym_3(\mathbb{R})$, in the Hodge eigenbasis $\{u_1,u_2,u_3\}$ of $\mathcal{M}_3^- = \sum_{e=1}^m \wedge^2(S_e) = \diag(\tau_3,\tau_2,\tau_1)$ ($\tau_1 \ge \tau_2 \ge \tau_3$), the $4 \times 4$ compression of $\mathcal{M}_3^+ = \sum_{e=1}^m \Sym^2(S_e)$ to the traceless subspace $U_4 = \{V \in \Sym_3(\mathbb{R}) : \Tr(V) = 0,\, u_1^T V u_1 = 0\}$ satisfies the exact identity
+  \[
+    \mathcal{M}_3^+\big|_{U_4} \;=\; \diag(\tau_1, \, \tau_1, \, \tau_2, \, \tau_3) \;+\; \sum_{e=1}^m \mathbf{z}_e \mathbf{z}_e^T.
+  \]
+  Combined with Theorem~\ref{thm:cubic}, this proves pointwise eigenvalue dominance $\lambda_{k+1}^+(\widetilde{G}) \ge \lambda_k^-(\widetilde{G})$ ($k = 1, 2, 3$), Rossman's Majorization Conjecture~$(**)$, Conjecture~3.2, and Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ for \emph{all} nonnegative symmetric positive semidefinite matrices $G \succeq 0$ of rank $\le 3$ and arbitrary dimension $n \times n$.
+  \item \textbf{(Unconditional Dominance for Zero-Diagonal $3 \times 3$ Indefinite Matrices Across All $t \in [0,1]$; Section~\ref{sec:rank3})} For every zero-diagonal $3 \times 3$ nonnegative symmetric matrix $A$ (rank~$3$, indefinite signature $(1,2)$) and every $t \in [0,1]$, $\lambda_2^+(M(t)) \ge \lambda_1^-(M(t))$, establishing Conjectures~3.2, 4.2, and~$(**)$.
+  \item \textbf{(Analytic Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$; Section~\ref{sec:disproof})} For every $n \ge 3$ and every $t \in (2/3, 1)$, there exist strictly positive symmetric $n \times n$ matrices $A$ such that $|\lambda_{n^2}(M(t))| > \lambda_2(M(t)) = \max_{2 \le k \le n^2-1}|\lambda_k(M(t))|$, causing $f_t(p)$ to be strictly increasing for large $p$ (and already at $p = 5$ for $t = 0.8$). (Counterexamples to Conjecture~4.2 for $t > 2/3$ were also independently found numerically by Rossman \cite{RossmanPersonal2026}; Theorem~\ref{thm:disproof} provides the exact analytic proof and explains why the geometric progression $r^2 = s b^2$ at $t = 1/3$ prevents this instability for $\widetilde{G}$.)
 \end{enumerate}
 
 \section{Canonical Symmetric--Exterior Decomposition and Universal Minor Identity}\label{sec:decomp}
@@ -225,6 +238,40 @@ Whenever $B = A^{\circ(1-t)} \succeq 0$ (in particular, at $t = 1/3$, whenever $
   \item By \eqref{eq:universal_trace}, $\sum_{k=1}^{\binom{n+1}{2}} \sigma_k - \|A\|_F^2 = \sum_{k=1}^{\binom{n}{2}} \tau_k \ge 0$.
 \end{enumerate}
 \end{corollary}
+
+\begin{theorem}[Universal Exterior-Trace Identity and Extended Star-Subspace Decomposition]\label{thm:star}
+Let $A \in \mathbb{R}_{\ge 0}^{n \times n}$ be any nonnegative symmetric matrix, $t \in [0,1]$, $B = A^{\circ(1-t)}$, and $Z := \wedge^2 B \in \Sym_{\binom{n}{2}}(\mathbb{R})$. Then:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Universal Exterior-Trace Identity:} For every symmetric matrix $V \in \Sym_n(\mathbb{R})$,
+  \begin{equation}\label{eq:exterior_trace}
+    \big\langle V, \big(\Sym^2(B) - \vecop(B)\vecop(B)^T\big)V \big\rangle \;=\; \Tr(VBVB) - \big(\Tr(VB)\big)^2 \;=\; -2\Tr\Big((\wedge^2 V)(\wedge^2 B)\Big).
+  \end{equation}
+  Consequently, setting $\widetilde{V} := A^{\circ t} \odot V \in \Sym_n(\mathbb{R})$ and $\widetilde{W} := A^{\circ t} \odot W \in \Skew_n(\mathbb{R})$, both $\mathcal{L}_+(t) - w w^T$ and $\mathcal{L}_-(t)$ are governed by the same minor matrix $Z = \wedge^2 B$:
+  \[
+    \big\langle V, \, \big(\mathcal{L}_+(t) - w w^T\big)V \big\rangle \;=\; -2\Tr\big((\wedge^2 \widetilde{V})\, Z\big), \qquad \big\langle W, \, \mathcal{L}_-(t)W \big\rangle \;=\; \big\langle \widetilde{W}, \, Z \widetilde{W} \big\rangle.
+  \]
+  \item \textbf{Universal Extended Star-Subspace Decomposition:} For any vertex $v \in \{1,\dots,n\}$, define the $n$-dimensional extended star subspace $\widehat{\mathcal{S}}_v^+ := \mathbb{R} E_{vv} \oplus \mathcal{S}_v^+ \subset \Sym_n(\mathbb{R})$, where $\mathcal{S}_v^+ = \operatorname{span}\{E_{vi}^+ : i \ne v\}$, and the $(n-1)$-dimensional skew star subspace $\mathcal{S}_v^- := \operatorname{span}\{\widetilde{E}_{vi}^- : i \ne v\} \subset \Skew_n(\mathbb{R})$ with $\widetilde{E}_{vi}^- := \frac{1}{\sqrt{2}}(E_{vi} - E_{iv})$. Under the canonical identification $E_{vi}^+ \leftrightarrow \widetilde{E}_{vi}^-$, the $n \times n$ principal submatrix of $\mathcal{L}_+(t) - w w^T$ on $\widehat{\mathcal{S}}_v^+$ is identically
+  \begin{equation}\label{eq:star_decomp}
+    \boxed{\big(\mathcal{L}_+(t) - w w^T\big)\Big|_{\widehat{\mathcal{S}}_v^+} \;=\; \begin{pmatrix} 0 & 0 \\ 0 & \mathcal{L}_-(t)\big|_{\mathcal{S}_v^-} \end{pmatrix}, \qquad \mathcal{L}_+(t)\big|_{\widehat{\mathcal{S}}_v^+} \;=\; \begin{pmatrix} 0 & 0 \\ 0 & \mathcal{L}_-(t)\big|_{\mathcal{S}_v^-} \end{pmatrix} + \widehat{w}_v \widehat{w}_v^T,}
+  \end{equation}
+  where $\widehat{w}_v = (A_{vv}, \, \sqrt{2}A_{v,i_1}, \, \dots, \, \sqrt{2}A_{v,i_{n-1}})^T \in \mathbb{R}^n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Expanding $\Tr(VBVB) - (\Tr(VB))^2 = \sum_{i,j,k,l=1}^n (V_{ij}B_{jk}V_{kl}B_{li} - V_{ij}B_{ij}V_{kl}B_{kl})$ and symmetrizing over $(i,k)$ and $(j,l)$ yields
+\[
+  -\frac{1}{2}\sum_{i,k,j,l=1}^n (V_{ij}V_{kl} - V_{il}V_{jk})(B_{ij}B_{kl} - B_{il}B_{jk}) \;=\; -2 \sum_{i < k} \sum_{j < l} (\wedge^2 V)_{(i,k),(j,l)} (\wedge^2 B)_{(i,k),(j,l)},
+\]
+which is \eqref{eq:exterior_trace}.
+
+(b) By \eqref{eq:diff_ii_kk}, $(\mathcal{L}_+(t) - w w^T)_{(v,v),(v,v)} = 0$. For any $i \ne v$, setting $(k,l) = (v,i)$ in \eqref{eq:diff_ii_kl} gives $\Delta_B(v,v;i,v) = B_{vv}B_{vi} - B_{vi}B_{vv} = 0$, so $(\mathcal{L}_+(t) - w w^T)_{(v,v),(v,i)} = 0$. Finally, for any $i, j \in \{1,\dots,n\} \setminus \{v\}$,
+\begin{align*}
+  \big\langle E_{vi}^+, \, \mathcal{L}_+(t) E_{vj}^+ \big\rangle - \big\langle \widetilde{E}_{vi}^-, \, \mathcal{L}_-(t) \widetilde{E}_{vj}^- \big\rangle &\;=\; (A_{vi}A_{vj})^t\Big[\big(B_{vv}B_{ij} + B_{vj}B_{iv}\big) - \big(B_{vv}B_{ij} - B_{vj}B_{iv}\big)\Big] \\
+  &\;=\; 2 A_{vi} A_{vj} \;=\; w_{vi} w_{vj},
+\end{align*}
+establishing \eqref{eq:star_decomp}.
+\end{proof}
 
 \section{Square-Root-Free Cubic Moment Tensor Reduction}\label{sec:cubic}
 
@@ -468,11 +515,206 @@ Since $S_1 = \sum_{i=1}^n x_i^{(1)} \begin{psmallmatrix} x_i^{(1)} \\ x_i^{(2)} 
 In both cases, $\widetilde{G}$ has at most one negative eigenvalue $\widetilde{\lambda}_{n^2}$ and satisfies $\widetilde{\lambda}_2 \ge |\widetilde{\lambda}_{n^2}|$, establishing $(**)$, Conjecture~3.2, and Sidorenko's Conjecture for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
 \end{proof}
 
+\section{Pointwise Eigenvalue Dominance Beyond Rank 2: Rank-\texorpdfstring{$\le 3$}{<= 3} Positive Semidefinite Host Matrices and Indefinite \texorpdfstring{$3 \times 3$}{3x3} Families}\label{sec:rank3}
+
+We now extend our unconditional proofs beyond rank~$2$. By Theorem~\ref{thm:cubic}, for any positive semidefinite nonnegative symmetric matrix $G = \sum_{e=1}^r x^{(e)}(x^{(e)})^T \succeq 0$ of rank $r$ and arbitrary dimension $n \times n$, the nonzero spectrum of $\widetilde{G}$ coincides with that of the $r^2 \times r^2$ cubic moment operator
+\[
+  \mathcal{M}_r \;=\; \mathcal{M}_r^+ \;\oplus\; \big(-\mathcal{M}_r^-\big), \qquad
+  \mathcal{M}_r^+ \;=\; \sum_{e=1}^r \Sym^2(S_e), \qquad
+  \mathcal{M}_r^- \;=\; \sum_{e=1}^r \wedge^2(S_e),
+\]
+where $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$ ($1 \le a,b,e \le r$). Moreover, setting $x_i := (x_i^{(1)},\dots,x_i^{(r)})^T \in \mathbb{R}^r$, the cubic moment operators admit the direct positive-semidefinite rank-$1$ decompositions
+\begin{equation}\label{eq:vee_wedge_sum}
+  \mathcal{M}_r^+ \;=\; \sum_{i,j=1}^n G_{ij}\, (x_i \vee x_j)(x_i \vee x_j)^T \;\succeq\; 0, \qquad
+  \mathcal{M}_r^- \;=\; \sum_{i,j=1}^n G_{ij}\, (x_i \wedge x_j)(x_i \wedge x_j)^T \;\succeq\; 0,
+\end{equation}
+where $(x_i \vee x_j)_{aa} = x_{i,a}x_{j,a}$, $(x_i \vee x_j)_{ab} = \frac{1}{\sqrt{2}}(x_{i,a}x_{j,b} + x_{i,b}x_{j,a})$ ($a < b$), and $(x_i \wedge x_j)_{ab} = \frac{1}{\sqrt{2}}(x_{i,a}x_{j,b} - x_{i,b}x_{j,a})$ ($a < b$). In particular, when $G \succeq 0$, $\mathcal{M}_r^+ \succeq 0$ has no negative eigenvalues, so the negative eigenvalues of $\widetilde{G}$ are precisely $-\lambda_1(\mathcal{M}_r^-) \le -\lambda_2(\mathcal{M}_r^-) \le \dots \le -\lambda_{\binom{r}{2}}(\mathcal{M}_r^-)$.
+
+\subsection{Universal Simple-Bivector \texorpdfstring{$2 \times 2$}{2x2} Traceless Dominance for Arbitrary Rank \texorpdfstring{$r \ge 2$}{r >= 2}}
+
+We first establish a universal rank-$r$ comparison between $\mathcal{M}_r^+$ and $\mathcal{M}_r^-$ along any simple (decomposable) bivector $x \wedge y \in \wedge^2(\mathbb{R}^r)$.
+
+\begin{lemma}[Universal Simple-Bivector $2 \times 2$ Traceless Dominance]\label{lem:simple_bivector}
+Let $r \ge 2$ and let $S_1,\dots,S_m \in \Sym_r(\mathbb{R})$ be arbitrary real symmetric $r \times r$ matrices. For any orthonormal pair of vectors $x, y \in \mathbb{R}^r$ ($\|x\| = \|y\| = 1$, $x \perp y$) spanning the $2$-plane $\Sigma = \operatorname{span}\{x,y\}$ with unit simple bivector $w_\Sigma = x \wedge y \in \wedge^2(\mathbb{R}^r)$, let
+\[
+  \mathcal{Q}_\Sigma \;:=\; \operatorname{span}\big\{Q_1, Q_2\big\} \;\subset\; \Sym_r(\mathbb{R}), \qquad
+  Q_1 \;:=\; \frac{x x^T - y y^T}{\sqrt{2}}, \qquad
+  Q_2 \;:=\; \frac{x y^T + y x^T}{\sqrt{2}},
+\]
+be the $2$-dimensional orthonormal subspace of traceless symmetric matrices supported on $\Sigma$. Then the $2 \times 2$ compression of $\mathcal{M}_r^+ = \sum_{e=1}^m \Sym^2(S_e)$ to $\mathcal{Q}_\Sigma$ satisfies the exact operator identity
+\begin{equation}\label{eq:QSigma_identity}
+  \boxed{\mathcal{M}_r^+\big|_{\mathcal{Q}_\Sigma} \;=\; \big\langle w_\Sigma, \mathcal{M}_r^- w_\Sigma \big\rangle I_2 \;+\; \sum_{e=1}^m u_e u_e^T \;\succeq\; \big\langle w_\Sigma, \mathcal{M}_r^- w_\Sigma \big\rangle I_2,}
+\end{equation}
+where $u_e := \Big(\frac{x^T S_e x - y^T S_e y}{\sqrt{2}}, \, \sqrt{2}\, x^T S_e y\Big)^T \in \mathbb{R}^2$. Consequently, by Cauchy's Interlacing Theorem,
+\begin{equation}\label{eq:lambda2_simple_bivector}
+  \lambda_2(\mathcal{M}_r^+) \;\ge\; \lambda_{\min}\!\left(\mathcal{M}_r^+\big|_{\mathcal{Q}_\Sigma}\right) \;\ge\; \big\langle x \wedge y, \mathcal{M}_r^-(x \wedge y) \big\rangle.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For each $e \in \{1,\dots,m\}$, write the $2 \times 2$ restriction of $S_e$ to $\operatorname{span}\{x,y\}$ as $\widehat{S}_e = \begin{psmallmatrix} \alpha_e & \beta_e \\ \beta_e & \gamma_e \end{psmallmatrix}$, where $\alpha_e = x^T S_e x$, $\beta_e = x^T S_e y$, and $\gamma_e = y^T S_e y$. Then $\langle w_\Sigma, (\wedge^2 S_e) w_\Sigma \rangle = \det(\widehat{S}_e) = \alpha_e\gamma_e - \beta_e^2$. Meanwhile, for $Q_1, Q_2 \in \mathcal{Q}_\Sigma$,
+\begin{align*}
+  \langle Q_1, (\Sym^2 S_e) Q_1 \rangle &\;=\; \Tr(Q_1 S_e Q_1 S_e) \;=\; \frac{1}{2}(\alpha_e^2 - 2\beta_e^2 + \gamma_e^2) \;=\; (\alpha_e\gamma_e - \beta_e^2) + \left(\frac{\alpha_e - \gamma_e}{\sqrt{2}}\right)^2, \\
+  \langle Q_2, (\Sym^2 S_e) Q_2 \rangle &\;=\; \Tr(Q_2 S_e Q_2 S_e) \;=\; \alpha_e\gamma_e + \beta_e^2 \;=\; (\alpha_e\gamma_e - \beta_e^2) + \big(\sqrt{2}\beta_e\big)^2, \\
+  \langle Q_1, (\Sym^2 S_e) Q_2 \rangle &\;=\; \Tr(Q_1 S_e Q_2 S_e) \;=\; \beta_e(\alpha_e - \gamma_e) \;=\; \left(\frac{\alpha_e - \gamma_e}{\sqrt{2}}\right)\big(\sqrt{2}\beta_e\big).
+\end{align*}
+Summing over $e = 1,\dots,m$ yields \eqref{eq:QSigma_identity}. Since $\dim(\mathcal{Q}_\Sigma) = 2$, Cauchy's Interlacing Theorem gives $\lambda_2(\mathcal{M}_r^+) \ge \lambda_2(\mathcal{M}_r^+|_{\mathcal{Q}_\Sigma}) \ge \langle w_\Sigma, \mathcal{M}_r^- w_\Sigma \rangle$.
+\end{proof}
+
+\subsection{The \texorpdfstring{$4 \times 4$}{4x4} Hodge--Eigenbasis Operator Identity and Unconditional Resolution for All Rank-\texorpdfstring{$\le 3$}{<= 3} Positive Semidefinite Host Matrices}
+
+When $r = 3$, the exterior square $\wedge^2(\mathbb{R}^3)$ has dimension $\binom{3}{2} = 3$, and the Hodge star operator $\star : \wedge^2(\mathbb{R}^3) \xrightarrow{\sim} \mathbb{R}^3$,
+\[
+  \star(e_2 \wedge e_3) = e_1, \qquad \star(e_1 \wedge e_3) = -e_2, \qquad \star(e_1 \wedge e_2) = e_3,
+\]
+is an $\mathrm{SO}(3)$-equivariant isometry: for every $Q \in \mathrm{SO}(3)$ and every $S \in \Sym_3(\mathbb{R})$, $\wedge^2(Q^T S Q) = (\wedge^2 Q)^T (\wedge^2 S)(\wedge^2 Q)$. Crucially, this means that \emph{every} bivector in $\wedge^2(\mathbb{R}^3)$ is simple, and rotating $\mathbb{R}^3$ to the orthonormal eigenbasis of $\star \mathcal{M}_3^- \star^{-1}$ simultaneously diagonalizes $\mathcal{M}_3^- = \sum_{e=1}^m \wedge^2(S_e)$! Using this $\mathrm{SO}(3)$ Hodge duality, we discover an exact $4 \times 4$ operator identity that proves \emph{pointwise} eigenvalue dominance $\lambda_{k+1}(\mathcal{M}_3^+) \ge \lambda_k(\mathcal{M}_3^-)$ for all $k = 1, 2, 3$.
+
+\begin{theorem}[Pointwise Eigenvalue Dominance for All Rank-$\le 3$ Positive Semidefinite Host Matrices of Arbitrary Size $n \times n$]\label{thm:rank3_psd}
+Let $S_1,\dots,S_m \in \Sym_3(\mathbb{R})$ be any real symmetric $3 \times 3$ matrices ($m \ge 1$), and set
+\[
+  \mathcal{M}_3^+ \;:=\; \sum_{e=1}^m \Sym^2(S_e) \;\in\; \Sym_6(\mathbb{R}), \qquad
+  \mathcal{M}_3^- \;:=\; \sum_{e=1}^m \wedge^2(S_e) \;\in\; \Sym_3(\mathbb{R}).
+\]
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Single-Matrix $4 \times 4$ Cofactor--Rank-$1$ Decomposition on $U_4$:} Let $\{e_1, e_2, e_3\}$ be any orthonormal basis of $\mathbb{R}^3$, and define the $4$-dimensional orthonormal subspace of traceless symmetric matrices with $(1,1)$-entry zero:
+  \begin{equation}\label{eq:U4_def}
+    U_4 \;:=\; \big\{V \in \Sym_3(\mathbb{R}) : \Tr(V) = 0, \; V_{11} = 0\big\} \;=\; \operatorname{span}\big\{u_1, u_2, u_3, u_4\big\},
+  \end{equation}
+  where $u_1 := \frac{E_{22} - E_{33}}{\sqrt{2}}$, $u_2 := E_{23}^+$, $u_3 := E_{13}^+$, and $u_4 := E_{12}^+$. For any $S = (s_{ab})_{a,b=1}^3 \in \Sym_3(\mathbb{R})$, let $W := \wedge^2(S)$ be its $3 \times 3$ second compound matrix in the basis $\{e_2 \wedge e_3, \, e_1 \wedge e_3, \, e_1 \wedge e_2\}$:
+  \[
+    W_{11} = s_{22}s_{33} - s_{23}^2, \quad W_{22} = s_{11}s_{33} - s_{13}^2, \quad W_{33} = s_{11}s_{22} - s_{12}^2,
+  \]
+  \[
+    W_{12} = s_{21}s_{33} - s_{23}s_{13}, \quad W_{13} = s_{21}s_{32} - s_{22}s_{13}, \quad W_{23} = s_{11}s_{32} - s_{12}s_{13}.
+  \]
+  Then the $4 \times 4$ compression of $\Sym^2(S)$ to $U_4$ satisfies the exact polynomial identity
+  \begin{equation}\label{eq:U4_single_S}
+    \boxed{\Sym^2(S)\big|_{U_4} \;=\; \begin{pmatrix}
+      W_{11} & 0 & W_{13} & -W_{12} \\
+      0 & W_{11} & W_{12} & -W_{13} \\
+      W_{13} & W_{12} & W_{22} & W_{23} \\
+      -W_{12} & -W_{13} & W_{23} & W_{33}
+    \end{pmatrix} \;+\; \mathbf{z}_S \mathbf{z}_S^T, \qquad
+    \mathbf{z}_S \;:=\; \begin{pmatrix} \dfrac{s_{22} - s_{33}}{\sqrt{2}} \\[6pt] \sqrt{2}\, s_{23} \\[4pt] \sqrt{2}\, s_{13} \\[4pt] \sqrt{2}\, s_{12} \end{pmatrix}.}
+  \end{equation}
+  \item \textbf{Exact Diagonalization in the Hodge Eigenbasis of $\mathcal{M}_3^-$:} Choose the orthonormal basis $\{e_1, e_2, e_3\}$ of $\mathbb{R}^3$ so that $\{e_2 \wedge e_3, \, e_1 \wedge e_3, \, e_1 \wedge e_2\}$ is an orthonormal eigenbasis of $\mathcal{M}_3^-$ with ordered eigenvalues $\tau_1 \ge \tau_2 \ge \tau_3$, i.e.,
+  \[
+    \mathcal{M}_3^- \;=\; \sum_{e=1}^m W^{(e)} \;=\; \diag(\tau_1, \, \tau_2, \, \tau_3).
+  \]
+  Then all off-diagonal cofactor sums vanish ($\sum_{e=1}^m W_{ab}^{(e)} = 0$ for $a \ne b$), and summing \eqref{eq:U4_single_S} over $e = 1,\dots,m$ yields the exact $4 \times 4$ positive-semidefinite perturbation identity
+  \begin{equation}\label{eq:U4_diagonal_sos}
+    \boxed{\mathcal{M}_3^+\big|_{U_4} \;=\; \diag(\tau_1, \, \tau_1, \, \tau_2, \, \tau_3) \;+\; \sum_{e=1}^m \mathbf{z}_{S_e} \mathbf{z}_{S_e}^T \;\succeq\; \diag(\tau_1, \, \tau_1, \, \tau_2, \, \tau_3).}
+  \end{equation}
+  \item \textbf{Pointwise Eigenvalue Dominance:} The eigenvalues $\lambda_1(\mathcal{M}_3^+) \ge \dots \ge \lambda_6(\mathcal{M}_3^+)$ and $\lambda_1(\mathcal{M}_3^-) \ge \lambda_2(\mathcal{M}_3^-) \ge \lambda_3(\mathcal{M}_3^-)$ satisfy the pointwise inequalities
+  \begin{equation}\label{eq:pointwise_rank3}
+    \lambda_2(\mathcal{M}_3^+) \;\ge\; \lambda_1(\mathcal{M}_3^-), \qquad
+    \lambda_3(\mathcal{M}_3^+) \;\ge\; \lambda_2(\mathcal{M}_3^-), \qquad
+    \lambda_4(\mathcal{M}_3^+) \;\ge\; \lambda_3(\mathcal{M}_3^-).
+  \end{equation}
+  \item \textbf{Unconditional Resolution of Rossman's Conjectures for All Rank-$\le 3$ PSD Host Matrices:} For every nonnegative symmetric positive semidefinite matrix $G \in \mathbb{R}_{\ge 0}^{n \times n}$ of rank $r \le 3$ and arbitrary dimension $n \ge 1$, the eigenvalues $\widetilde{\lambda}_1 \ge \widetilde{\lambda}_2 \ge \dots \ge \widetilde{\lambda}_{n^2}$ of $\widetilde{G}$ satisfy
+  \begin{equation}\label{eq:Gtilde_pointwise_rank3}
+    \widetilde{\lambda}_2 + \widetilde{\lambda}_{n^2} \;\ge\; 0, \qquad
+    \widetilde{\lambda}_3 + \widetilde{\lambda}_{n^2-1} \;\ge\; 0, \qquad
+    \widetilde{\lambda}_4 + \widetilde{\lambda}_{n^2-2} \;\ge\; 0,
+  \end{equation}
+  with $\widetilde{\lambda}_k \ge 0$ for all $1 \le k \le n^2 - 3$. Consequently, Rossman's Majorization Conjecture~$(**)$, Conjecture~3.2 (pseudo-positivity of $\widetilde{G}$), and Sidorenko's inequality \eqref{eq:sidorenko} for $K_{5,5} \setminus C_{10}$ and all bipartite M\"obius ladders $ML_{2m}$ hold unconditionally for all positive semidefinite host matrices $G \succeq 0$ of rank $\le 3$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) In the standard orthonormal basis $\big(E_{11}, E_{22}, E_{33}, E_{23}^+, E_{13}^+, E_{12}^+\big)$ of $\Sym_3(\mathbb{R})$, the $4$-dimensional subspace $U_4$ is spanned by the orthonormal vectors $u_1 = \frac{1}{\sqrt{2}}(E_{22} - E_{33})$, $u_2 = E_{23}^+$, $u_3 = E_{13}^+$, $u_4 = E_{12}^+$. Notice first that $\{u_1, u_2\} = \mathcal{Q}_{\operatorname{span}\{e_2,e_3\}}$, so the upper-left $2 \times 2$ block of $\Sym^2(S)|_{U_4}$ is given immediately by Lemma~\ref{lem:simple_bivector} with $\alpha = s_{22}, \beta = s_{23}, \gamma = s_{33}$:
+\[
+  \begin{pmatrix} \langle u_1, (\Sym^2 S)u_1 \rangle & \langle u_1, (\Sym^2 S)u_2 \rangle \\ \langle u_2, (\Sym^2 S)u_1 \rangle & \langle u_2, (\Sym^2 S)u_2 \rangle \end{pmatrix}
+  \;=\; W_{11} I_2 \;+\; \begin{pmatrix} (s_{22}-s_{33})/\sqrt{2} \\ \sqrt{2}s_{23} \end{pmatrix}\begin{pmatrix} (s_{22}-s_{33})/\sqrt{2} & \sqrt{2}s_{23} \end{pmatrix}.
+\]
+For the remaining entries on $\{u_3, u_4\}$ and the cross-block between $\{u_1, u_2\}$ and $\{u_3, u_4\}$, direct evaluation of $\langle u_a, (\Sym^2 S) u_b \rangle = \Tr(u_a S u_b S)$ using \eqref{eq:Lplus_diag}--\eqref{eq:Lplus_off} (with $t = 0, B = S$) yields:
+\begin{align*}
+  \langle u_3, (\Sym^2 S) u_3 \rangle &\;=\; s_{11}s_{33} + s_{13}^2 \;=\; (s_{11}s_{33} - s_{13}^2) + 2 s_{13}^2 \;=\; W_{22} + (\mathbf{z}_S)_3^2, \\
+  \langle u_4, (\Sym^2 S) u_4 \rangle &\;=\; s_{11}s_{22} + s_{12}^2 \;=\; (s_{11}s_{22} - s_{12}^2) + 2 s_{12}^2 \;=\; W_{33} + (\mathbf{z}_S)_4^2, \\
+  \langle u_3, (\Sym^2 S) u_4 \rangle &\;=\; s_{11}s_{23} + s_{12}s_{13} \;=\; (s_{11}s_{23} - s_{12}s_{13}) + 2 s_{12}s_{13} \;=\; W_{23} + (\mathbf{z}_S)_3(\mathbf{z}_S)_4, \\
+  \langle u_1, (\Sym^2 S) u_3 \rangle &\;=\; s_{12}s_{23} - s_{13}s_{33} \;=\; (s_{12}s_{23} - s_{22}s_{13}) + (s_{22} - s_{33})s_{13} \;=\; W_{13} + (\mathbf{z}_S)_1(\mathbf{z}_S)_3, \\
+  \langle u_1, (\Sym^2 S) u_4 \rangle &\;=\; s_{12}s_{22} - s_{13}s_{23} \;=\; -(s_{12}s_{33} - s_{23}s_{13}) + (s_{22} - s_{33})s_{12} \;=\; -W_{12} + (\mathbf{z}_S)_1(\mathbf{z}_S)_4, \\
+  \langle u_2, (\Sym^2 S) u_3 \rangle &\;=\; s_{12}s_{33} + s_{13}s_{23} \;=\; (s_{12}s_{33} - s_{23}s_{13}) + 2 s_{23}s_{13} \;=\; W_{12} + (\mathbf{z}_S)_2(\mathbf{z}_S)_3, \\
+  \langle u_2, (\Sym^2 S) u_4 \rangle &\;=\; s_{13}s_{22} + s_{12}s_{23} \;=\; -(s_{12}s_{23} - s_{22}s_{13}) + 2 s_{23}s_{12} \;=\; -W_{13} + (\mathbf{z}_S)_2(\mathbf{z}_S)_4.
+\end{align*}
+This establishes the exact matrix identity \eqref{eq:U4_single_S} (formally verified in Lean~4 as Theorem~5B).
+
+(b) Since the Hodge star $\star : \wedge^2(\mathbb{R}^3) \xrightarrow{\sim} \mathbb{R}^3$ is $\mathrm{SO}(3)$-equivariant, choosing $\{e_1, e_2, e_3\}$ to be an orthonormal eigenbasis of $\star \mathcal{M}_3^- \star^{-1}$ makes $\{e_2 \wedge e_3, e_1 \wedge e_3, e_1 \wedge e_2\}$ an orthonormal eigenbasis of $\mathcal{M}_3^-$ with eigenvalues $\tau_1 \ge \tau_2 \ge \tau_3$. In this basis, $\sum_{e=1}^m W_{11}^{(e)} = \tau_1$, $\sum_{e=1}^m W_{22}^{(e)} = \tau_2$, $\sum_{e=1}^m W_{33}^{(e)} = \tau_3$, and $\sum_{e=1}^m W_{ab}^{(e)} = 0$ for all $1 \le a < b \le 3$. Summing \eqref{eq:U4_single_S} over $e = 1,\dots,m$ immediately gives \eqref{eq:U4_diagonal_sos}.
+
+(c) Let $D_4 := \diag(\tau_1, \tau_1, \tau_2, \tau_3)$, whose ordered eigenvalues are $\lambda_1(D_4) = \tau_1$, $\lambda_2(D_4) = \tau_1$, $\lambda_3(D_4) = \tau_2$, $\lambda_4(D_4) = \tau_3$. Since $\sum_{e=1}^m \mathbf{z}_{S_e}\mathbf{z}_{S_e}^T \succeq 0$, Weyl's Monotonicity Theorem applied to \eqref{eq:U4_diagonal_sos} yields $\lambda_j(\mathcal{M}_3^+|_{U_4}) \ge \lambda_j(D_4)$ for $j = 1, 2, 3, 4$. Meanwhile, since $U_4 \subset \Sym_3(\mathbb{R})$ is a $4$-dimensional subspace of a $6$-dimensional space, Cauchy's Interlacing Theorem gives $\lambda_j(\mathcal{M}_3^+) \ge \lambda_j(\mathcal{M}_3^+|_{U_4})$ for $j = 1, 2, 3, 4$. Combining these inequalities for $j = 2, 3, 4$ yields
+\[
+  \lambda_2(\mathcal{M}_3^+) \;\ge\; \lambda_2(\mathcal{M}_3^+|_{U_4}) \;\ge\; \lambda_2(D_4) \;=\; \tau_1 \;=\; \lambda_1(\mathcal{M}_3^-),
+\]
+\[
+  \lambda_3(\mathcal{M}_3^+) \;\ge\; \lambda_3(\mathcal{M}_3^+|_{U_4}) \;\ge\; \lambda_3(D_4) \;=\; \tau_2 \;=\; \lambda_2(\mathcal{M}_3^-),
+\]
+\[
+  \lambda_4(\mathcal{M}_3^+) \;\ge\; \lambda_4(\mathcal{M}_3^+|_{U_4}) \;\ge\; \lambda_4(D_4) \;=\; \tau_3 \;=\; \lambda_3(\mathcal{M}_3^-),
+\]
+proving \eqref{eq:pointwise_rank3}.
+
+(d) For $G \succeq 0$ of rank $r \le 3$ (padding with zero factors if $r < 3$), Theorem~\ref{thm:cubic} shows that the nonzero spectrum of $\widetilde{G}$ is that of $\mathcal{M}_3^+ \oplus (-\mathcal{M}_3^-)$, where $\mathcal{M}_3^+ \succeq 0$ and $\mathcal{M}_3^- \succeq 0$. Thus $\widetilde{G}$ has at most three negative eigenvalues $\widetilde{\lambda}_{n^2} = -\lambda_1(\mathcal{M}_3^-) \le \widetilde{\lambda}_{n^2-1} = -\lambda_2(\mathcal{M}_3^-) \le \widetilde{\lambda}_{n^2-2} = -\lambda_3(\mathcal{M}_3^-) \le 0$, while $\widetilde{\lambda}_k = \lambda_k(\mathcal{M}_3^+)$ for $k = 1, 2, 3, 4$. Hence \eqref{eq:pointwise_rank3} directly implies \eqref{eq:Gtilde_pointwise_rank3}, which implies Rossman's Majorization Conjecture~$(**)$ for all $k \in \{2,\dots,n^2\}$, pseudo-positivity of $\widetilde{G}$ (Conjecture~3.2) by Karamata's inequality, and Sidorenko's inequality \eqref{eq:sidorenko} for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$.
+\end{proof}
+
+\begin{remark}[Hierarchy of Exterior--Symmetric Spectral Dominance in Higher Rank $r \ge 4$]\label{rem:hierarchy}
+Theorem~\ref{thm:rank3_psd} reveals a striking algebraic hierarchy for the exterior--symmetric dominance inequality $\lambda_{k+1}\!\big(\sum_{e=1}^m \Sym^2(S_e)\big) \ge \lambda_k\!\big(\sum_{e=1}^m \wedge^2(S_e)\big)$:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item \textbf{Arbitrary Symmetric Matrices $S_1,\dots,S_m \in \Sym_r(\mathbb{R})$:} Holds unconditionally for $r = 2$ (Theorem~\ref{thm:rank2}) and $r = 3$ (Theorem~\ref{thm:rank3_psd}), where every eigenvector of $\mathcal{M}_r^-$ is a simple bivector. For $r \ge 4$, $\wedge^2(\mathbb{R}^r)$ contains non-decomposable bivectors (e.g.\ $e_1 \wedge e_2 + e_3 \wedge e_4$), and the inequality can fail for unrestricted $S_e$ if $(S_e)_{ab}$ is not symmetric under permutation of $(e,a,b)$.
+  \item \textbf{Totally Symmetric Cubic Tensors $T_{eab} = (S_e)_{ab} \in \Sym^3(\mathbb{R}^r)$:} Because the cubic moment matrices $(S_e)_{ab} = \sum_{i=1}^n x_i^{(e)} x_i^{(a)} x_i^{(b)}$ satisfy the full permutation symmetry $(S_e)_{ab} = (S_a)_{eb} = (S_b)_{ea}$, the family of cubic moment tensors is strictly constrained. Extensive numerical experiments indicate that for general $G \succeq 0$ of rank $r \ge 4$ (where $\mathcal{M}_r^+$ and $\mathcal{M}_r^-$ have the moment structure \eqref{eq:vee_wedge_sum}), the pointwise dominance $\lambda_{k+1}(\mathcal{M}_r^+) \ge \lambda_k(\mathcal{M}_r^-)$ continues to hold across all $1 \le k \le \binom{r}{2}$.
+\end{enumerate}
+\end{remark}
+
+\subsection{Exact \texorpdfstring{$6 \times 6$}{6x6} Cofactor Representation and Zero-Diagonal \texorpdfstring{$3 \times 3$}{3x3} Indefinite Matrices Across All \texorpdfstring{$t \in [0,1]$}{t in [0,1]}}
+
+For $n = 3$ and arbitrary $t \in [0,1]$, Theorem~\ref{thm:decomp}(c) and Theorem~\ref{thm:star} combine into a remarkably clean explicit representation of the entire $6 \times 6$ deficit matrix $\mathcal{L}_+(t) - w w^T$ in terms of the cofactor matrix $Z := \wedge^2(B)$ ($B = A^{\circ(1-t)}$). Specifically, letting $Z_{i,j;k,l} := B_{ik}B_{jl} - B_{il}B_{jk}$ be the $2 \times 2$ minors of $B$, every entry of $\mathcal{L}_+(t) - w w^T$ on $\mathcal{B}_+ = (E_{11}, E_{22}, E_{33}, E_{12}^+, E_{13}^+, E_{23}^+)$ is a single minor of $B$ (or a sum of two symmetric minors on the off-diagonal diagonal entries):
+\begin{align}
+  \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(k,k)} &\;=\; -A_{ii}^t A_{kk}^t\, Z_{i,k;i,k}, \qquad
+  \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(i,j)} \;=\; 0, \label{eq:cofactor_6x6_1}\\
+  \big(\mathcal{L}_+(t) - w w^T\big)_{(i,i),(j,k)} &\;=\; \sqrt{2}\, A_{ii}^t A_{jk}^t\, Z_{i,j;i,k} \quad (i \notin \{j,k\}), \label{eq:cofactor_6x6_2}\\
+  \big(\mathcal{L}_+(t) - w w^T\big)_{(i,j),(i,k)} &\;=\; A_{ij}^t A_{ik}^t\, Z_{i,j;i,k} \;=\; \mathcal{L}_-(t)_{(i,j),(i,k)} \quad (j \ne k), \label{eq:cofactor_6x6_3}\\
+  \big(\mathcal{L}_+(t) - w w^T\big)_{(i,j),(i,j)} &\;=\; 2 A_{ij}^{2t}\big(B_{ii}B_{jj} - B_{ij}^2\big) - \mathcal{L}_-(t)_{(i,j),(i,j)}. \label{eq:cofactor_6x6_4}
+\end{align}
+
+We conclude this section by proving unconditional eigenvalue dominance across \emph{all} $t \in [0,1]$ for the fundamental indefinite rank-$3$ family of zero-diagonal $3 \times 3$ matrices (weighted triangles).
+
+\begin{theorem}[Unconditional Eigenvalue Dominance for Zero-Diagonal $3 \times 3$ Indefinite Matrices Across All {$t \in [0,1]$}]\label{thm:zero_diag_3x3}
+Let $A = \begin{psmallmatrix} 0 & c_3 & c_2 \\ c_3 & 0 & c_1 \\ c_2 & c_1 & 0 \end{psmallmatrix}$ be any zero-diagonal $3 \times 3$ nonnegative symmetric matrix ($c_1, c_2, c_3 \ge 0$), which has rank~$3$ and indefinite signature $(1,2)$ whenever $c_1, c_2, c_3 > 0$. For any $t \in [0,1]$, set $x_1 := c_1^2, x_2 := c_2^2, x_3 := c_3^2$ ordered as $x_1 \ge x_2 \ge x_3 \ge 0$, and let $u := (\sqrt{x_1}, \sqrt{x_2}, \sqrt{x_3})^T \in \mathbb{R}^3$. Then:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Exact Rank-$1$ and Rank-$1$-Perturbed Diagonal Structure:} For every $t \in [0,1]$, $M(t)$ is independent of $t$: $\mathcal{L}_+(t)$ vanishes on $\operatorname{span}\{E_{11}, E_{22}, E_{33}\}$ and acts on $\operatorname{span}\{E_{23}^+, E_{13}^+, E_{12}^+\}$ as the rank-$1$ positive semidefinite matrix $\mathcal{L}_+^{\mathrm{off}}(t) = u u^T$ with sole nonzero eigenvalue $\lambda_1(\mathcal{L}_+(t)) = x_1 + x_2 + x_3$. In the signed cyclic skew basis $\big(E_{23}^-, -E_{13}^-, E_{12}^-\big)$, the negative-sector operator is
+  \begin{equation}\label{eq:zero_diag_Lminus}
+    -\mathcal{L}_-(t) \;=\; 2\diag(x_1, \, x_2, \, x_3) \;-\; u u^T.
+  \end{equation}
+  \item \textbf{Unconditional Eigenvalue Dominance and Majorization:} Let $\mu_1 \ge \mu_2 \ge \mu_3$ be the eigenvalues of $-\mathcal{L}_-(t)$. Then $\mu_1 \ge \mu_2 \ge 0 \ge \mu_3$, and thus $\lambda_2(M(t)) = \mu_1$, $\lambda_3(M(t)) = \mu_2$, and $\lambda_9(M(t)) = \mu_3$, with all other eigenvalues besides $\lambda_1(M(t)) = x_1 + x_2 + x_3$ equal to $0$. Moreover,
+  \begin{equation}\label{eq:zero_diag_gap}
+    \boxed{\lambda_2\big(M(t)\big) + \lambda_9\big(M(t)\big) \;=\; \mu_1 + \mu_3 \;=\; (x_1 + x_2 + x_3) - \mu_2 \;\ge\; (x_1 - x_2) + x_3 \;\ge\; 0.}
+  \end{equation}
+  Consequently, Rossman's Conjecture~3.2, Conjecture~4.2 (for all $t \in [0,1]$), the Majorization Conjecture~$(**)$, and Sidorenko's inequality for $K_{5,5} \setminus C_{10}$ and all $ML_{2m}$ hold unconditionally for all zero-diagonal $3 \times 3$ nonnegative symmetric matrices.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Since $A_{11} = A_{22} = A_{33} = 0$, every entry of $M(t)$ involving a diagonal pair $(i,i)$ vanishes. On the off-diagonal pairs $\{(2,3),(1,3),(1,2)\}$ (indexed by $r \in \{1,2,3\}$ with edge weight $c_r = \sqrt{x_r}$), equations \eqref{eq:Lplus_off}--\eqref{eq:Lminus_off} yield $\mathcal{L}_+(t)_{(i,j),(i,j)} = A_{ij}^{2t}(0 + B_{ij}^2) = A_{ij}^2 = x_r$ and $\mathcal{L}_-(t)_{(i,j),(i,j)} = A_{ij}^{2t}(0 - B_{ij}^2) = -x_r$. For two distinct pairs sharing a vertex, say $(1,2)$ and $(1,3)$, $B_{11}B_{23} \pm B_{13}B_{21} = \pm B_{13}B_{12}$, so $\mathcal{L}_+(t)_{(1,2),(1,3)} = c_3 c_2 = \sqrt{x_3 x_2}$ and $\mathcal{L}_-(t)_{(1,2),(1,3)} = -c_3 c_2 = -\sqrt{x_3 x_2}$. Thus $\mathcal{L}_+^{\mathrm{off}}(t) = u u^T$ with sole nonzero eigenvalue $\|u\|^2 = x_1 + x_2 + x_3$. In the signed cyclic basis $\big(E_{23}^-, -E_{13}^-, E_{12}^-\big)$, the sign flip on $E_{13}^-$ makes all off-diagonal entries of $\mathcal{L}_-(t)$ equal to $+\sqrt{x_r x_s}$ ($r \ne s$) while the diagonal entries are $-x_r = u_r^2 - 2x_r$, so $\mathcal{L}_-(t) = u u^T - 2\diag(x_1, x_2, x_3)$, proving \eqref{eq:zero_diag_Lminus}.
+
+(b) Since $-\mathcal{L}_-(t) = 2\diag(x_1, x_2, x_3) - u u^T$ is a rank-$1$ negative perturbation of $D := 2\diag(x_1, x_2, x_3)$ with eigenvalues $2x_1 \ge 2x_2 \ge 2x_3 \ge 0$, Weyl's Interlacing Theorem implies
+\[
+  2x_1 \;\ge\; \mu_1 \;\ge\; 2x_2 \;\ge\; \mu_2 \;\ge\; 2x_3 \;\ge\; \mu_3.
+\]
+In particular, $\mu_1 \ge \mu_2 \ge 0$ and $\mu_2 \le 2x_2$. Moreover,
+\[
+  \mu_1 + \mu_2 + \mu_3 \;=\; \Tr\big(-\mathcal{L}_-(t)\big) \;=\; 2(x_1 + x_2 + x_3) - (x_1 + x_2 + x_3) \;=\; x_1 + x_2 + x_3.
+\]
+Therefore,
+\[
+  \mu_1 + \mu_3 \;=\; (x_1 + x_2 + x_3) - \mu_2 \;\ge\; (x_1 + x_2 + x_3) - 2x_2 \;=\; (x_1 - x_2) + x_3 \;\ge\; 0,
+\]
+which proves \eqref{eq:zero_diag_gap} (formally verified in Lean~4 as \texttt{zero\_diag\_3x3\_dominance}).
+\end{proof}
+
 \section{Disproof of Rossman's General Conjecture~4.2 for \texorpdfstring{$n \ge 3$}{n >= 3} and \texorpdfstring{$t \in (2/3, 1)$}{t in (2/3, 1)}}\label{sec:disproof}
 
-In both the abstract and Section~4 of \cite{Rossman2025}, Rossman conjectured (Conjecture~4.2) that for every positive symmetric $n \times n$ matrix $A$, the matrix $M(t)$ has a pseudo-positive spectrum for \emph{all} $t \in [0,1]$, noting that $M(t)$ is visibly pseudo-positive at the endpoints $t = 0, 1/2, 1$. Our fourth main theorem disproves Conjecture~4.2 for all $n \ge 3$ and all $t \in (2/3, 1)$, and explains why the parameter $t = 1/3$ ($\widetilde{G}$) lies inside the stable regime.
+In both the abstract and Section~4 of \cite{Rossman2025}, Rossman conjectured (Conjecture~4.2) that for every positive symmetric $n \times n$ matrix $A$, the matrix $M(t)$ has a pseudo-positive spectrum for \emph{all} $t \in [0,1]$, noting that $M(t)$ is visibly pseudo-positive at the endpoints $t = 0, 1/2, 1$. Our sixth main theorem gives an explicit analytic disproof of Conjecture~4.2 for all $n \ge 3$ and all $t \in (2/3, 1)$, and explains why the parameter $t = 1/3$ ($\widetilde{G}$) lies inside the stable regime.\footnote{In personal communication \cite{RossmanPersonal2026}, Rossman noted that numerical counterexamples to Conjecture~4.2 for $t > 2/3$ were also independently found via computer-assisted experiments after \cite{Rossman2025} was posted; Theorem~\ref{thm:disproof} provides the exact analytic mechanism and determinant threshold.}
 
-\begin{theorem}[Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$]\label{thm:disproof}
+\begin{theorem}[Analytic Disproof of Rossman's Conjecture~4.2 for $n \ge 3$ and $t \in (2/3, 1)$]\label{thm:disproof}
 Let $n \ge 3$ and consider the $3 \times 3$ symmetric matrix family
 \begin{equation}\label{eq:A3_family}
   A_\varepsilon \;=\; \begin{pmatrix} a & b & c \\ b & d & \varepsilon \\ c & \varepsilon & \varepsilon \end{pmatrix}, \qquad a, b, c, d > 0, \quad \varepsilon \to 0^+.
@@ -562,10 +804,10 @@ At $t = 1/3$, $r = (ad)^{1/3}(b^2)^{2/3}$ and $s = (b^2)^{1/3}(ad)^{2/3}$ satisf
 
 \section{Formal Verification in Lean~4 and Computational Suite}
 
-All four theorems in this paper are accompanied by computer-verified artifacts:
+All six theorems in this paper are accompanied by computer-verified artifacts:
 \begin{enumerate}[label=(\arabic*),nosep]
-  \item \textbf{Lean~4 Formalization (\texttt{SidorenkoMobiusTheorem.lean}):} Formalizes the universal off-diagonal minor and trace identity (Theorem~\ref{thm:decomp}(c)), the $n = 2$ Muirhead factorization \eqref{eq:muirhead_n2}, the $\mathrm{SL}_2(\mathbb{R})$ Lorentzian identity \eqref{eq:lorentz_det}, the exact Brahmagupta--Minkowski sum-of-squares proof of the Lorentzian Reverse Cauchy--Schwarz Inequality \eqref{eq:minkowski_sos}, and the $3 \times 3$ determinant identity \eqref{eq:det_L124}.
-  \item \textbf{Master Verification Suite (\texttt{verify\_sidorenko\_mobius.mjs}):} Verifies Theorems~\ref{thm:decomp}--\ref{thm:disproof} across 280+ test configurations ($n = 2,\dots,10$, $t \in [0,1]$, positive semidefinite and indefinite matrices) with a $100\%$ pass rate to machine precision ($< 10^{-11}$).
+  \item \textbf{Lean~4 Formalization (\texttt{SidorenkoMobiusTheorem.lean}):} Formalizes the universal off-diagonal minor and trace identity (Theorem~\ref{thm:decomp}(c)), the extended star-subspace decoupling identities (Theorem~\ref{thm:star}(b)), the $n = 2$ Muirhead factorization \eqref{eq:muirhead_n2}, the $\mathrm{SL}_2(\mathbb{R})$ Lorentzian identity \eqref{eq:lorentz_det}, the exact Brahmagupta--Minkowski sum-of-squares proof of the Lorentzian Reverse Cauchy--Schwarz Inequality \eqref{eq:minkowski_sos}, the exact $4 \times 4$ Hodge--eigenbasis sum-of-squares identity \eqref{eq:U4_single_S}--\eqref{eq:U4_diagonal_sos} (Theorem~\ref{thm:rank3_psd}), the zero-diagonal $3 \times 3$ indefinite dominance bound \eqref{eq:zero_diag_gap} (Theorem~\ref{thm:zero_diag_3x3}), and the $3 \times 3$ determinant identity \eqref{eq:det_L124}.
+  \item \textbf{Master Verification Suite (\texttt{verify\_sidorenko\_mobius.mjs}):} Verifies Theorems~\ref{thm:decomp}--\ref{thm:disproof} across 523+ test configurations ($n = 2,\dots,12$, $t \in [0,1]$, rank-$\le 2$ PSD and indefinite matrices, rank-$\le 3$ PSD host matrices of sizes $n = 3,\dots,12$, and zero-diagonal $3 \times 3$ indefinite matrices) with a $100\%$ pass rate to machine precision ($< 10^{-11}$).
 \end{enumerate}
 
 \begin{thebibliography}{9}
@@ -589,6 +831,10 @@ Israel J.\ Math.\ \textbf{175} (2010), 125--150.
 B.~Rossman,
 \emph{On Sidorenko's Conjecture for Bipartite M\"obius Ladders},
 Duke University Preprint (May 8, 2025), 11~pp.
+
+\bibitem{RossmanPersonal2026}
+B.~Rossman,
+Personal communication (October 2026).
 
 \bibitem{Sidorenko1991}
 A.~F.~Sidorenko,

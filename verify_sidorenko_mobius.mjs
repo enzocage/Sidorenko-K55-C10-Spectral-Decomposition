@@ -411,6 +411,232 @@ assert(eig13[1] + eig13[8] > +4.4e-3, 'At t=1/3, lam2 + lam9 must be strictly po
 console.log(`  -> PASS: Exact determinant identity verified; at t=0.8, lam2=${lam2_08.toFixed(6)}, lam9=${lam9_08.toFixed(6)},`);
 console.log(`           lam2+lam9=${(lam2_08 + lam9_08).toFixed(6)} < 0, and f_{0.8}(p) strictly increases for large p.\n`);
 
+// ============================================================================
+// TEST 5: Theorem 5 (Exact 4x4 Hodge-Eigenbasis Identity & Pointwise Dominance
+//         for All Rank <= 3 Positive Semidefinite Host Matrices of Size n x n)
+// ============================================================================
+console.log('[Test 5] Verifying Theorem 5: 4x4 Hodge-Eigenbasis Identity & Rank-3 PSD Dominance...');
+
+function eigSymVecs(M) {
+  const n = M.length;
+  const A = M.map(row => Float64Array.from(row));
+  const V = Array.from({ length: n }, (_, i) => {
+    const r = new Float64Array(n);
+    r[i] = 1;
+    return r;
+  });
+  for (let iter = 0; iter < 400 * n * n; iter++) {
+    let maxVal = 0, p = 0, q = 1;
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+      const v = Math.abs(A[i][j]);
+      if (v > maxVal) { maxVal = v; p = i; q = j; }
+    }
+    if (maxVal < 1e-15) break;
+    const app = A[p][p], aqq = A[q][q], apq = A[p][q];
+    const tau = (aqq - app) / (2 * apq);
+    const t = tau >= 0 ? 1 / (tau + Math.sqrt(1 + tau * tau)) : -1 / (-tau + Math.sqrt(1 + tau * tau));
+    const c = 1 / Math.sqrt(1 + t * t), s = t * c;
+    A[p][p] = app - t * apq; A[q][q] = aqq + t * apq; A[p][q] = A[q][p] = 0;
+    for (let k = 0; k < n; k++) if (k !== p && k !== q) {
+      const akp = A[k][p], akq = A[k][q];
+      A[k][p] = A[p][k] = c * akp - s * akq;
+      A[k][q] = A[q][k] = s * akp + c * akq;
+    }
+    for (let k = 0; k < n; k++) {
+      const vkp = V[k][p], vkq = V[k][q];
+      V[k][p] = c * vkp - s * vkq;
+      V[k][q] = s * vkp + c * vkq;
+    }
+  }
+  const idx = Array.from({ length: n }, (_, i) => i).sort((a, b) => A[b][b] - A[a][a]);
+  return {
+    vals: idx.map(i => A[i][i]),
+    vecs: idx.map(i => Float64Array.from({ length: n }, (_, r) => V[r][i]))
+  };
+}
+
+let test5Count = 0;
+for (const n of [3, 4, 6, 8, 10]) {
+  for (let trial = 0; trial < 25; trial++) {
+    // Generate positive semidefinite G = X^T X of rank 3 with positive entries
+    const X = Array.from({ length: 3 }, () =>
+      Float64Array.from({ length: n }, () => 0.1 + 1.5 * rand())
+    );
+    // Add signed components to X[1], X[2] while keeping G_{ij} > 0
+    for (let i = 0; i < n; i++) {
+      X[1][i] = (rand() - 0.35) * X[0][i];
+      X[2][i] = (rand() - 0.35) * X[0][i];
+    }
+    const G = Array.from({ length: n }, () => new Float64Array(n));
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        G[i][j] = X[0][i] * X[0][j] + X[1][i] * X[1][j] + X[2][i] * X[2][j];
+        assert(G[i][j] > 0, 'G_ij must be positive');
+      }
+    }
+
+    // Build cubic moment matrices S_1, S_2, S_3 (3 x 3)
+    const SList = Array.from({ length: 3 }, () => Array.from({ length: 3 }, () => new Float64Array(3)));
+    for (let e = 0; e < 3; e++) {
+      for (let a = 0; a < 3; a++) {
+        for (let b = 0; b < 3; b++) {
+          let s = 0;
+          for (let i = 0; i < n; i++) s += X[e][i] * X[a][i] * X[b][i];
+          SList[e][a][b] = s;
+        }
+      }
+    }
+
+    // Build M_3^- (3x3 in basis (0,1), (0,2), (1,2)) and find its Hodge eigenbasis
+    const skewCoords3 = [[0, 1], [0, 2], [1, 2]];
+    const M3minus = Array.from({ length: 3 }, () => new Float64Array(3));
+    for (let a = 0; a < 3; a++) {
+      const [i, j] = skewCoords3[a];
+      for (let b = 0; b < 3; b++) {
+        const [k, l] = skewCoords3[b];
+        let sum = 0;
+        for (const S of SList) sum += S[i][k] * S[j][l] - S[i][l] * S[j][k];
+        M3minus[a][b] = sum;
+      }
+    }
+    const { vals: tauEigs, vecs: vm } = eigSymVecs(M3minus);
+    const [tau1, tau2, tau3] = tauEigs;
+
+    // Hodge star rotation U in O(3)
+    const U = [
+      [vm[0][2], -vm[0][1], vm[0][0]],
+      [vm[1][2], -vm[1][1], vm[1][0]],
+      [vm[2][2], -vm[2][1], vm[2][0]]
+    ];
+    const SRot = SList.map(S => {
+      const tmp = Array.from({ length: 3 }, (_, i) =>
+        Float64Array.from({ length: 3 }, (__, j) => U[i][0] * S[0][j] + U[i][1] * S[1][j] + U[i][2] * S[2][j])
+      );
+      return Array.from({ length: 3 }, (_, i) =>
+        Float64Array.from({ length: 3 }, (__, j) => tmp[i][0] * U[j][0] + tmp[i][1] * U[j][1] + tmp[i][2] * U[j][2])
+      );
+    });
+
+    // Build 4x4 compression M_3^+|_{U_4} in basis {b1=(D2-D3)/sqrt(2), b2=O_23, b3=O_13, b4=O_12}
+    const symCoords3 = [[0, 0], [1, 1], [2, 2], [0, 1], [0, 2], [1, 2]];
+    const M3plusRot = Array.from({ length: 6 }, () => new Float64Array(6));
+    for (let a = 0; a < 6; a++) {
+      const [i, j] = symCoords3[a];
+      for (let b = 0; b < 6; b++) {
+        const [k, l] = symCoords3[b];
+        const norm = (i === j ? 1 : Math.SQRT1_2) * (k === l ? 1 : Math.SQRT1_2);
+        const mult = (i === j ? 1 : 2) * (k === l ? 1 : 2) * 0.5;
+        let sum = 0;
+        for (const S of SRot) sum += S[i][k] * S[j][l] + S[i][l] * S[j][k];
+        M3plusRot[a][b] = norm * mult * sum;
+      }
+    }
+    const B_U4 = [
+      [0, 1 / Math.SQRT2, -1 / Math.SQRT2, 0, 0, 0],
+      [0, 0, 0, 0, 0, 1], // O_23
+      [0, 0, 0, 0, 1, 0], // O_13
+      [0, 0, 0, 1, 0, 0]  // O_12
+    ];
+    const MU4 = Array.from({ length: 4 }, (_, a) =>
+      Float64Array.from({ length: 4 }, (__, b) => {
+        let s = 0;
+        for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) s += B_U4[a][i] * M3plusRot[i][j] * B_U4[b][j];
+        return s;
+      })
+    );
+
+    // Build theoretical formula diag(tau1, tau1, tau2, tau3) + sum_e z_e z_e^T
+    const diagTau = [tau1, tau1, tau2, tau3];
+    const FormulaU4 = Array.from({ length: 4 }, (_, a) =>
+      Float64Array.from({ length: 4 }, (__, b) => (a === b ? diagTau[a] : 0))
+    );
+    for (const S of SRot) {
+      const z = [
+        (S[1][1] - S[2][2]) / Math.SQRT2,
+        Math.SQRT2 * S[1][2],
+        Math.SQRT2 * S[0][2],
+        Math.SQRT2 * S[0][1]
+      ];
+      for (let a = 0; a < 4; a++) for (let b = 0; b < 4; b++) {
+        FormulaU4[a][b] += z[a] * z[b];
+      }
+    }
+    for (let a = 0; a < 4; a++) for (let b = 0; b < 4; b++) {
+      assert(Math.abs(MU4[a][b] - FormulaU4[a][b]) < 1e-10, `4x4 U4 identity mismatch at (${a},${b})`);
+    }
+
+    // Verify pointwise dominance lambda_{k+1}^+(G_tilde) >= lambda_k^-(G_tilde) on full n^2 x n^2 operator
+    const A = G.map(row => row.map(v => Math.pow(v, 1.5)));
+    const { Lplus, Lminus } = buildMtAndBlocks(A, 1 / 3);
+    const ep = eigSym(Lplus);
+    const em = eigSym(Lminus);
+    for (let k = 0; k < 3; k++) {
+      assert(ep[k + 1] - em[k] >= -1e-10, `Pointwise dominance failed at k=${k + 1}: ${ep[k + 1]} < ${em[k]}`);
+    }
+    test5Count++;
+  }
+}
+console.log(`  -> PASS: All ${test5Count} rank-3 PSD tests (n=3..10, exact 4x4 U_4 identity & pointwise dominance) verified to < 1e-10.\n`);
+
+// ============================================================================
+// TEST 6: Theorem 6 (Universal Extended Star-Subspace Identity & Zero-Diagonal 3x3 Dominance)
+// ============================================================================
+console.log('[Test 6] Verifying Theorem 6: Extended Star-Subspace Identity & Zero-Diagonal 3x3 Indefinite Dominance...');
+
+let test6Count = 0;
+// 6a. Extended Star-Subspace Identity for general n and general t
+for (const n of [3, 4, 5]) {
+  for (const t of [0.2, 1 / 3, 0.5, 0.75]) {
+    const A = Array.from({ length: n }, () => new Float64Array(n));
+    for (let i = 0; i < n; i++) {
+      for (let j = i; j < n; j++) {
+        A[i][j] = A[j][i] = 0.2 + 2.0 * rand();
+      }
+    }
+    const { Lplus, Lminus, w } = buildMtAndBlocks(A, t);
+    const dSym = Lplus.length;
+    const Ldiff = Array.from({ length: dSym }, (_, a) =>
+      Float64Array.from({ length: dSym }, (__, b) => Lplus[a][b] - w[a] * w[b])
+    );
+    // Check for vertex v = 0: diagonal index is 0, off-diagonal indices (0, j) for j=1..n-1 are n, n+1, ..., 2n-2
+    assert(Math.abs(Ldiff[0][0]) < 1e-14, 'Star subspace (v,v) entry of L_+ - ww^T must be 0');
+    for (let j = 1; j < n; j++) {
+      const symIdx = n + (j - 1);
+      const skewIdx = j - 1;
+      assert(Math.abs(Ldiff[0][symIdx]) < 1e-14, 'Star subspace cross entry (v,v)-(v,j) of L_+ - ww^T must be 0');
+      for (let k = 1; k < n; k++) {
+        const symIdx2 = n + (k - 1);
+        const skewIdx2 = k - 1;
+        assert(Math.abs(Ldiff[symIdx][symIdx2] - Lminus[skewIdx][skewIdx2]) < 1e-14, 'Star subspace (v,j)-(v,k) mismatch');
+      }
+    }
+    test6Count++;
+  }
+}
+
+// 6b. Zero-Diagonal 3x3 Indefinite Matrices across all t in [0, 1]
+for (const t of [0.1, 1 / 3, 0.5, 0.9]) {
+  for (let trial = 0; trial < 25; trial++) {
+    const c1 = 0.2 + 2.0 * rand(), c2 = 0.2 + 2.0 * rand(), c3 = 0.2 + 2.0 * rand();
+    const A = [
+      [0, c3, c2],
+      [c3, 0, c1],
+      [c2, c1, 0]
+    ];
+    const { Mt } = buildMtAndBlocks(A, t);
+    const eigs = eigSym(Mt);
+    const pos = eigs.filter(x => x > 1e-12).sort((a, b) => b - a);
+    const neg = eigs.filter(x => x < -1e-12).map(x => -x).sort((a, b) => b - a);
+    assert(neg.length <= 1, `Expected at most 1 negative eigenvalue for zero-diagonal 3x3, got ${neg.length}`);
+    if (neg.length === 1) {
+      assert(pos[1] - neg[0] >= -1e-12, `Zero-diagonal 3x3 dominance failed: lam2^+=${pos[1]} < lam1^-=${neg[0]}`);
+    }
+    test6Count++;
+  }
+}
+console.log(`  -> PASS: All ${test6Count} extended star-subspace & zero-diagonal 3x3 indefinite tests verified to < 1e-12.\n`);
+
 console.log('=========================================================================');
-console.log(' ALL 4 THEOREMS VERIFIED SUCCESSFULLY (100% PASS RATE)');
+console.log(' ALL 6 THEOREMS VERIFIED SUCCESSFULLY (100% PASS RATE)');
 console.log('=========================================================================');
+

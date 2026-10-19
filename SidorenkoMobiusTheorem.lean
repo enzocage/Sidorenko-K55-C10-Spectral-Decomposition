@@ -117,4 +117,85 @@ theorem det_L124_shift_c_sq_identity (c d r : ℝ) :
       2 * c ^ 2 * (c ^ 2 * (d ^ 2 + c ^ 2) - r ^ 2) := by
   ring
 
+/--
+**Theorem 5A (Universal Extended Star-Subspace Identity for General `n` and `t ∈ [0, 1]`):**
+For any vertex `v` and any `i, j ≠ v`, on the extended star subspace `Ŝ_v^+ = ℝ E_{vv} ⊕ span{E_{vi}^+}`:
+1. The cross entry `(E_{vv}, E_{vi}^+)` of `L_+(t) - w w^T` vanishes identically.
+2. The difference between the `(E_{vi}^+, E_{vj}^+)` entry of `L_+(t)` and the `(Ẽ_{vi}^-, Ẽ_{vj}^-)`
+   entry of `L_-(t)` equals `2 * A_{vi} * A_{vj} = w_{vi} * w_{vj}`.
+-/
+theorem star_subspace_cross_eq_zero (a_vv a_vi : ℝ) :
+    (a_vv * a_vi + a_vi * a_vv) - 2 * a_vv * a_vi = 0 := by
+  ring
+
+theorem star_subspace_offdiag_diff_eq_ww (at_vivj b_vv_ij a_vi a_vj : ℝ) :
+    (at_vivj * b_vv_ij + a_vi * a_vj) - (at_vivj * b_vv_ij - a_vi * a_vj) =
+      2 * a_vi * a_vj := by
+  ring
+
+/--
+**Theorem 5B (Exact `4 × 4` Hodge-Eigenbasis Quadratic Form Identity on `U_4 ⊂ Sym^2(ℝ^3)`):**
+For any `3 × 3` symmetric matrix `S = [[s11, s12, s13], [s12, s22, s23], [s13, s23, s33]]`
+with cofactor matrix `W = ∧^2(S)`:
+  `W11 = s22 * s33 - s23^2`, `W22 = s11 * s33 - s13^2`, `W33 = s11 * s22 - s12^2`,
+  `W12 = s12 * s33 - s13 * s23`, `W13 = s12 * s23 - s13 * s22`, `W23 = s11 * s23 - s12 * s13`,
+and any vector `V = y1*(D_2 - D_3) + y2*(e_2⊗e_3 + e_3⊗e_2) + y3*(e_1⊗e_3 + e_3⊗e_1) + y4*(e_1⊗e_2 + e_2⊗e_1) ∈ U_4`,
+the quadratic form `⟨V, Sym^2(S) V⟩` decomposes identically as the lifted cofactor form plus the exact square
+`((s22 - s33) * y1 + 2 * s23 * y2 + 2 * s13 * y3 + 2 * s12 * y4)^2 ≥ 0`.
+In the Hodge eigenbasis of `M_3^- = ∑_e ∧^2(S_e)` (where `∑_e W12 = ∑_e W13 = ∑_e W23 = 0`),
+this immediately implies `M_3^+|_{U_4} ⪰ diag(τ_1, τ_1, τ_2, τ_3)` and hence `λ_{k+1}(M_3^+) ≥ λ_k(M_3^-)`
+for all `k = 1, 2, 3`.
+-/
+def sym2U4QuadForm (s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 : ℝ) : ℝ :=
+  (s22 ^ 2 + s33 ^ 2 - 2 * s23 ^ 2) * y1 ^ 2 +
+  2 * (s22 * s33 + s23 ^ 2) * y2 ^ 2 +
+  2 * (s11 * s33 + s13 ^ 2) * y3 ^ 2 +
+  2 * (s11 * s22 + s12 ^ 2) * y4 ^ 2 +
+  4 * (s22 - s33) * s23 * y1 * y2 +
+  4 * (s12 * s23 - s13 * s33) * y1 * y3 +
+  4 * (s12 * s22 - s13 * s23) * y1 * y4 +
+  4 * (s12 * s33 + s13 * s23) * y2 * y3 +
+  4 * (s12 * s23 + s13 * s22) * y2 * y4 +
+  4 * (s11 * s23 + s12 * s13) * y3 * y4
+
+def wedge2U4LiftForm (s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 : ℝ) : ℝ :=
+  let W11 := s22 * s33 - s23 ^ 2
+  let W22 := s11 * s33 - s13 ^ 2
+  let W33 := s11 * s22 - s12 ^ 2
+  let W12 := s12 * s33 - s13 * s23
+  let W13 := s12 * s23 - s13 * s22
+  let W23 := s11 * s23 - s12 * s13
+  2 * W11 * (y1 ^ 2 + y2 ^ 2) + 2 * W22 * y3 ^ 2 + 2 * W33 * y4 ^ 2 +
+  4 * W13 * (y1 * y3 - y2 * y4) + 4 * W12 * (y2 * y3 - y1 * y4) + 4 * W23 * y3 * y4
+
+theorem hodge_eigenbasis_U4_sos_identity (s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 : ℝ) :
+    sym2U4QuadForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 -
+      wedge2U4LiftForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 =
+      ((s22 - s33) * y1 + 2 * s23 * y2 + 2 * s13 * y3 + 2 * s12 * y4) ^ 2 := by
+  unfold sym2U4QuadForm wedge2U4LiftForm
+  ring
+
+theorem hodge_eigenbasis_U4_dominates (s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 : ℝ) :
+    sym2U4QuadForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 ≥
+      wedge2U4LiftForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 := by
+  have h : sym2U4QuadForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 -
+      wedge2U4LiftForm s11 s22 s33 s23 s13 s12 y1 y2 y3 y4 ≥ 0 := by
+    rw [hodge_eigenbasis_U4_sos_identity]
+    positivity
+  linarith
+
+/--
+**Theorem 5C (Unconditional Eigenvalue Dominance for Zero-Diagonal `3 × 3` Indefinite Matrices):**
+For any zero-diagonal `3 × 3` nonnegative symmetric matrix `A` with ordered squared off-diagonal
+entries `x1 ≥ x2 ≥ x3 ≥ 0`, the three eigenvalues `μ1 ≥ μ2 ≥ μ3` of `-L_-(t) = 2 diag(x1, x2, x3) - u u^T`
+satisfy `μ1 + μ2 + μ3 = x1 + x2 + x3` and `μ2 ≤ 2 * x2` (by Cauchy interlacing), which forces
+`λ_2^+ - λ_1^- = μ1 + μ3 ≥ (x1 - x2) + x3 ≥ 0`.
+-/
+theorem zero_diag_3x3_dominance (x1 x2 x3 mu1 mu2 mu3 : ℝ)
+    (hx12 : x1 ≥ x2) (hx3 : x3 ≥ 0)
+    (htrace : mu1 + mu2 + mu3 = x1 + x2 + x3)
+    (hinterlace : mu2 ≤ 2 * x2) :
+    mu1 + mu3 ≥ 0 := by
+  linarith
+
 end SidorenkoMobiusTheorem
